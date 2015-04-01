@@ -1,5 +1,9 @@
 package business;
 
+import java.util.List;
+
+
+
 /**
  * A discount based on the products marked as eligible for discount
  * 
@@ -27,10 +31,18 @@ public class EligibleProductsDiscount extends Discount {
 	}
 
 	@Override
-	public double computeDiscount(Sale sale) {
-		return percentage;
+	public double computeDiscount(Sale sale) { // Kyiys was here
+		Product prod;
+		double disc = 0.0;
 		// TODO: program me!				
-				
+		List<SaleProduct> list=sale.getSaleProducts();
+		for(SaleProduct sp : list){
+			prod= sp.getProduct();
+			if(prod.isDiscountEligibility())
+				disc += (prod.getFaceValue()*prod.getQty())*(percentage/100);
+		}
+		return disc;
+
 	}
 	
 }

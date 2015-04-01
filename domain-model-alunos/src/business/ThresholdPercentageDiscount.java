@@ -1,5 +1,7 @@
 package business;
 
+import java.util.List;
+
 /**
  * A discount based on the amount of sale being greater than a threshold
  * 
@@ -36,9 +38,19 @@ public class ThresholdPercentageDiscount extends Discount {
 	}
 
 	@Override
-	public double computeDiscount(Sale sale) {
-		// TODO: program me!
-		return 0;
+	public double computeDiscount(Sale sale) { // Done by Kyiys
+		Product prod;
+		double disc = 0.0;
+		// TODO: program me!				
+		List<SaleProduct> list=sale.getSaleProducts();
+		for(SaleProduct sp : list){
+			prod= sp.getProduct();
+			if(prod.isDiscountEligibility())
+				if(prod.getQty()>=threshold)
+					disc += (prod.getFaceValue()*prod.getQty())*(percentage/100);
+		}
+		return disc;
+
 	}
 	
 }

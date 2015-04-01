@@ -1,16 +1,24 @@
-bussiness
+business
 	EligibleProductsDiscount:
-		computeDiscount
+		computeDiscount X done by Kyiys
 	
 	NoDiscount:
-		computeDiscount
+		computeDiscount X Silly wabbit, discount are for people
 		
 	ProcessSaleHandler:
-		addProductToSale
-		getSaleDiscount
+		addProductToSale x Done by Kyiys
+		getSaleDiscount X Done by Kyiys most duboius
 		
 	ProductCatalog:
-		getProduct
+		getProduct X done by Kyiys
 		
 	ThresholdPercentageDiscount:
-		computeDiscount
+		computeDiscount X done by Kyiys
+		
+		
+Additions 
+	Sale:
+		getStatus
+		getCustomer
+	Customer:
+		getDiscount

@@ -67,15 +67,24 @@ public class ProcessSaleHandler {
 	 * to proceed with the sale
 	 */
 	public void addProductToSale (int prodCod, double qty) 
-					throws ApplicationException {
+					throws ApplicationException { // Done by Kyiys
 		// TODO: program me!
+		if(currentSale.getStatus()!=SaleStatus.OPEN)
+			throw new ApplicationException("The sale is closed");
+		Product prod = productCatalog.getProduct(prodCod);
+		if(prod.getQty()<qty)
+			throw new ApplicationException("There is not enough quantity of this product");
+		SaleProduct sp = new SaleProduct(prod, qty);
+		currentSale.addSaleProduct(sp);
+		
 	}
 
 	/**
 	 * @return The sale's discount, according to the customer discount type
 	 */
-	public double getSaleDiscount ()  {
+	public double getSaleDiscount ()  { // Done by Kyiys
 		// TODO: program me!
-		return 0;
+		Discount disc =currentSale.getCustomer().getDiscount();
+		return disc.computeDiscount(currentSale);
 	}
 }

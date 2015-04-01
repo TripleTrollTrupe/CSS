@@ -65,7 +65,9 @@ public class Customer {
 
 	
 	// 2. getters and setters
-
+	public Discount getDiscount(){
+		return discount;
+	}
 
 	/**
 	 * Checks if a VAT number is valid.

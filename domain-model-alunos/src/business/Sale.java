@@ -62,6 +62,12 @@ public class Sale {
 		saleProducts.add(sp);
 	}
 
+	public SaleStatus getStatus(){
+		return status;
+	}
 	
+	public Customer getCustomer(){
+		return customer;
+	}
 	
 }

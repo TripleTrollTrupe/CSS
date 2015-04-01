@@ -40,9 +40,15 @@ public class ProductCatalog {
 	 * @return The product associated with the product code
 	 * @throws ApplicationException When the product with a given prodCod is not found
 	 */
-	public Product getProduct (int prodCod) throws ApplicationException {
+	public Product getProduct (int prodCod) throws ApplicationException { // Done by Kyiys
 		// TODO: program me!
-		return null;
+		Product prod;
+		if(!products.containsKey(prodCod)){
+			throw new ApplicationException("There is no Product with that key");
+		}
+		prod=products.get(prodCod);
+		
+		return prod;
 	}
 
 	
