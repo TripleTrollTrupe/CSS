@@ -1,0 +1,16 @@
+bussiness
+	EligibleProductsDiscount:
+		computeDiscount
+	
+	NoDiscount:
+		computeDiscount
+		
+	ProcessSaleHandler:
+		addProductToSale
+		getSaleDiscount
+		
+	ProductCatalog:
+		getProduct
+		
+	ThresholdPercentageDiscount:
+		computeDiscount
