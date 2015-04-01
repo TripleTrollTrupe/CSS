@@ -28,8 +28,9 @@ public class EligibleProductsDiscount extends Discount {
 
 	@Override
 	public double computeDiscount(Sale sale) {
-		// TODO: program me!
-		return 0;
+		return percentage;
+		// TODO: program me!				
+				
 	}
 	
 }

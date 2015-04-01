@@ -52,7 +52,16 @@ public class Sale {
 		this.saleProducts = new LinkedList<SaleProduct>();
 	}
 
-	
-	// 2. getters and setters
+	// 2. getters and setters - Kaze was here
 
+	public List<SaleProduct> getSaleProducts() {
+		return saleProducts;
+	}
+
+	public void addSaleProduct(SaleProduct sp){
+		saleProducts.add(sp);
+	}
+
+	
+	
 }

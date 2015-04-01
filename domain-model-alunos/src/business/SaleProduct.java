@@ -37,6 +37,14 @@ public class SaleProduct {
 	}
 	
 
-	// 2. getters and setters
+	// 2. getters and setters - Kaze was here
+	public Product getProduct(){
+		return this.product;
+	}
 
+	public double getQty(){
+		return this.qty;
+	}
+
+	
 }

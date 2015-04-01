@@ -72,6 +72,69 @@ public class Product {
 		this.unit = unit;
 	}
 
+	// 2. getters and setters - Kaze was here
 	
-	// 2. getters and setters
+	public int getProdCod() {
+		return prodCod;
+	}
+
+
+	public void setProdCod(int prodCod) {
+		this.prodCod = prodCod;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+	public double getFaceValue() {
+		return faceValue;
+	}
+
+
+	public void setFaceValue(double faceValue) {
+		this.faceValue = faceValue;
+	}
+
+
+	public double getQty() {
+		return qty;
+	}
+
+
+	public void setQty(double qty) {
+		this.qty = qty;
+	}
+
+
+	public boolean isDiscountEligibility() {
+		return discountEligibility;
+	}
+
+
+	public void setDiscountEligibility(boolean discountEligibility) {
+		this.discountEligibility = discountEligibility;
+	}
+
+
+	public Unit getUnit() {
+		return unit;
+	}
+
+
+	public void setUnit(Unit unit) {
+		this.unit = unit;
+	}
+
+	
+	
+	
+	
 }
