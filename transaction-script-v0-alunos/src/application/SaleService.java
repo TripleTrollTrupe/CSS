@@ -1,6 +1,10 @@
 package application;
 
 
+import persistence.RecordNotFoundException;
+import persistence.SaleRowDataGateway;
+
+
 /**
  * Handles sale's transactions. 
  * Each public method implements a transaction script.	
@@ -19,10 +23,12 @@ public enum SaleService {
 	 * @return The id of the new sale. This id is useful for adding products 
 	 * to the sale and for computing the sale's total, the total discount, etc.
 	 * @throws ApplicationException When the customer does not exist.
+	 * @throws RecordNotFoundException 
 	 */ 
-	public int newSale (int vat) throws ApplicationException {		
-		// TODO: program me!
-		return 0;
+	public int newSale (int vat) throws ApplicationException, RecordNotFoundException {		
+		//TODO - Kaze was here thinks it's done
+		SaleRowDataGateway sale = new SaleRowDataGateway(vat);
+		return sale.getSaleId();
 	}
 
 	
@@ -34,11 +40,14 @@ public enum SaleService {
 	 * @param qty The amount to sell.
 	 * @throws ApplicationException When the sale is closed, the product code does not exist,
 	 * there's not enough amount of product to be sold. 
+	 * @throws RecordNotFoundException 
 	 * 
 	 * @pre: qty > 0
 	 */
-	public void addProductToSale (int saleId, int productCode, double qty) throws ApplicationException {
-		// TODO: program me!
+	public void addProductToSale (int saleId, int productCode, double qty) throws ApplicationException, RecordNotFoundException {
+		//TODO = Kaze was here think's it's okay
+		SaleRowDataGateway sale = SaleRowDataGateway.getSaleByID(saleId);
+		sale.addProduct(productCode,qty);
 	}
 	
 	/**
@@ -50,7 +59,8 @@ public enum SaleService {
 	 * referential integrity problem occurs.
 	 */
 	public double getSaleDiscount (int saleId) throws ApplicationException {
-		// TODO: program me!
+		SaleRowDataGateway sale = SaleRowDataGateway.getSaleByID(saleId);
+
 		return 0;
 	}
 }
