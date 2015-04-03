@@ -75,4 +75,8 @@ public class SaleProductRowDataGateway {
 		return this.product.isEligibleForDiscount();
 	}
 	
+	public double getQuantity(){
+		return quantity;
+	}
+	
 }

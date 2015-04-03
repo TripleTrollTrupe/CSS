@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import application.ApplicationException;
+import application.DiscountType;
 import application.SaleStatus;
 
 public class SaleRowDataGateway {
@@ -77,7 +78,22 @@ public class SaleRowDataGateway {
 	//TODO I think this is the only thing left now
 	public double getDiscountTotal(){
 		double discountTotal=0;
-		return discountTotal;
+		ConfigurationRowDataGateway conf = ConfigurationRowDataGateway.getConfiguration();
+		if(customer.getDiscountType() == DiscountType.NO_DISCOUNT)
+			return 0;
+		for(SaleProductRowDataGateway saleProd : soldProducts){
+			if(saleProd.isEligibleForDiscount()){
+				//get the type?
+				if(saleProd.getQuantity()>=conf.getAmountThreshold()){
+					discountTotal += (saleProd.getSaleProductTotal()*conf.getEligiblePercentage());
+				}
+			}
+			totalCost += saleProd.getSaleProductTotal();
+		}
+		if(discountTotal > (totalCost*conf.getAmountThresholdPercentage()))
+			return totalCost*conf.getAmountThresholdPercentage();
+		else
+			return discountTotal;
 
 	}
 }
