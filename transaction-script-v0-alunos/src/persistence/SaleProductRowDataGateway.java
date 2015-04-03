@@ -71,8 +71,7 @@ public class SaleProductRowDataGateway {
 		return this.saleProductID;
 	}
 	
-	
-	public boolean soParaMostrarQueDa(){  // TODO - VES COMO DA COSTA?
+	public boolean isEligibleForDiscount(){ 
 		return this.product.isEligibleForDiscount();
 	}
 	

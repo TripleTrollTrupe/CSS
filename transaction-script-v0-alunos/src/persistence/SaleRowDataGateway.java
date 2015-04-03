@@ -5,12 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import application.ApplicationException;
 import application.SaleStatus;
 
 public class SaleRowDataGateway {
 
 	private static Map<Integer, SaleRowDataGateway> saleByID = new HashMap<> ();  
-	
+
 	//The ID of the sale
 	private int saleID;
 	//ID of the next Sale
@@ -31,8 +32,14 @@ public class SaleRowDataGateway {
 	public SaleRowDataGateway(){
 
 	}
-	public SaleRowDataGateway(int vat) throws RecordNotFoundException{ // opens a sale
-		this.customer = CustomerRowDataGateway.getCustomerByVATNumber(vat);
+	public SaleRowDataGateway(int vat) throws ApplicationException{ // opens a sale
+		try {
+			this.customer = CustomerRowDataGateway.getCustomerByVATNumber(vat);
+		} catch (RecordNotFoundException e) {
+
+			throw new ApplicationException ("Customer does not exist");
+			
+		}
 		this.soldProducts=new ArrayList<SaleProductRowDataGateway>();
 		this.saleID=nextID++; //TODO a way to get distinct ID's
 		this.status=SaleStatus.OPEN;
@@ -56,8 +63,14 @@ public class SaleRowDataGateway {
 	}
 
 	//adds product to the sale in the determined quantity
-	public void addProduct(int saleProductID, double qty) throws RecordNotFoundException{
-		SaleProductRowDataGateway added =SaleProductRowDataGateway.getSaleProductByID(saleProductID);
+	public void addProduct(int saleProductID, double qty)throws ApplicationException{
+		SaleProductRowDataGateway added;
+		try {
+			added = SaleProductRowDataGateway.getSaleProductByID(saleProductID);
+		} catch (RecordNotFoundException e) {
+			throw new ApplicationException ("SaleProduct does not exist");
+			
+		}
 		added.setQuantity(qty);
 		this.soldProducts.add(added);
 	}
@@ -65,8 +78,8 @@ public class SaleRowDataGateway {
 	public double getDiscountTotal(){
 		double discountTotal=0;
 		return discountTotal;
-			
-		}
+
 	}
+}
 
 
