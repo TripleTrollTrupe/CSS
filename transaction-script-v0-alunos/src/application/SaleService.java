@@ -60,7 +60,6 @@ public enum SaleService {
 	 */
 	public double getSaleDiscount (int saleId) throws ApplicationException {
 		SaleRowDataGateway sale = SaleRowDataGateway.getSaleByID(saleId);
-
-		return 0;
+		return sale.getDiscountTotal();
 	}
 }

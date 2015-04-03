@@ -14,10 +14,12 @@ public class SaleRowDataGateway {
 
 	//The ID of the sale
 	private static int saleID;
+	//ID of the next Sale
+	private static int nextID=1;
 	//The customer
 	private CustomerRowDataGateway customer;
 	//The list of products belonging to the sale
-	private List<ProductRowDataGateway> products;
+	private List<SaleProductRowDataGateway> soldProducts;
 	//Total of the sale
 	private double totalCost;
 	//Status of the sale
@@ -29,8 +31,8 @@ public class SaleRowDataGateway {
 	}
 	public SaleRowDataGateway(int vat) throws RecordNotFoundException{ // opens a sale
 		this.customer = CustomerRowDataGateway.getCustomerByVATNumber(vat);
-		this.products=new ArrayList<ProductRowDataGateway>();
-		SaleRowDataGateway.saleID=0; //TODO a way to get distinct ID's
+		this.soldProducts=new ArrayList<SaleProductRowDataGateway>();
+		SaleRowDataGateway.saleID=nextID++; //TODO a way to get distinct ID's
 		this.status=SaleStatus.OPEN;
 	}
 
@@ -52,23 +54,15 @@ public class SaleRowDataGateway {
 	}
 
 	//adds product to the sale in the determined quantity
-	public void addProduct(int productCode, double qty) throws RecordNotFoundException{
-		ProductRowDataGateway added =ProductRowDataGateway.getProductByCode(productCode);
-		added.setQty(qty);
-		this.products.add(added);
+	public void addProduct(int saleProductID, double qty) throws RecordNotFoundException{
+		SaleProductRowDataGateway added =SaleProductRowDataGateway.getSaleProductByID(saleProductID);
+		added.setQuantity(qty);
+		this.soldProducts.add(added);
 	}
-	
+	//TODO I think this is the only thing left now
 	public double getDiscountTotal(){
-		DiscountType discountType = customer.getDiscountType();
-		double percentage=0;
-		if(discountType==DiscountType.NO_DISCOUNT)
-			return 0;
-		if(discountType==DiscountType.SALE_AMOUNT){
-			//TODO
-			return this.totalCost * percentage;
-		}
-		if(discountType==DiscountType.ELIGIBLE_PRODUCTS){
-			//TODO
+		double discountTotal;
+		return discountTotal;
 			
 		}
 	}
