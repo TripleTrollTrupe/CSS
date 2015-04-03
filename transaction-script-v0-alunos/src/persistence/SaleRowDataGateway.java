@@ -5,24 +5,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import application.DiscountType;
 import application.SaleStatus;
 
 public class SaleRowDataGateway {
 
 	private static Map<Integer, SaleRowDataGateway> saleByID = new HashMap<> ();  
-
+	
 	//The ID of the sale
-	private static int saleID;
+	private int saleID;
 	//ID of the next Sale
 	private static int nextID=1;
 	//The customer
+	@SuppressWarnings("unused")
 	private CustomerRowDataGateway customer;
 	//The list of products belonging to the sale
 	private List<SaleProductRowDataGateway> soldProducts;
 	//Total of the sale
+	@SuppressWarnings("unused")
 	private double totalCost;
-	//Status of the sale
+	//Status of the sale	
+	@SuppressWarnings("unused")
 	private SaleStatus status;
 
 
@@ -32,7 +34,7 @@ public class SaleRowDataGateway {
 	public SaleRowDataGateway(int vat) throws RecordNotFoundException{ // opens a sale
 		this.customer = CustomerRowDataGateway.getCustomerByVATNumber(vat);
 		this.soldProducts=new ArrayList<SaleProductRowDataGateway>();
-		SaleRowDataGateway.saleID=nextID++; //TODO a way to get distinct ID's
+		this.saleID=nextID++; //TODO a way to get distinct ID's
 		this.status=SaleStatus.OPEN;
 	}
 
@@ -48,7 +50,7 @@ public class SaleRowDataGateway {
 	public int getSaleId(){
 		return this.saleID;
 	}
-	public static SaleRowDataGateway getSaleByID(int vat){
+	public static SaleRowDataGateway getSaleByID(int saleID){
 		SaleRowDataGateway sale = saleByID.get(saleID);
 		return sale;
 	}
@@ -61,10 +63,10 @@ public class SaleRowDataGateway {
 	}
 	//TODO I think this is the only thing left now
 	public double getDiscountTotal(){
-		double discountTotal;
+		double discountTotal=0;
 		return discountTotal;
 			
 		}
 	}
 
-}
+

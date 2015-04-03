@@ -1,6 +1,7 @@
 package application;
 
 
+import persistence.CustomerRowDataGateway;
 import persistence.RecordNotFoundException;
 import persistence.SaleRowDataGateway;
 
@@ -25,10 +26,21 @@ public enum SaleService {
 	 * @throws ApplicationException When the customer does not exist.
 	 * @throws RecordNotFoundException 
 	 */ 
-	public int newSale (int vat) throws ApplicationException, RecordNotFoundException {		
+	public int newSale (int vat) throws ApplicationException {		
 		//TODO - Kaze was here thinks it's done
-		SaleRowDataGateway sale = new SaleRowDataGateway(vat);
-		return sale.getSaleId();
+		
+
+		// Checks that there is no other customer with the same VAT number 
+		// Notice that this approach needs extra control in order to be used 
+		// in a concurrent scenario. For now we keep it simple!
+		try {
+			SaleRowDataGateway.getSaleByVATNumber(vat);
+		} catch (RecordNotFoundException e) { 
+			// If the customer does not exists, add him to the database 
+			CustomerRowDataGateway newCustomer = new CustomerRowDataGateway (vat, denomination, phoneNumber, discountType);
+			newCustomer.insert();
+		}
+		 
 	}
 
 	

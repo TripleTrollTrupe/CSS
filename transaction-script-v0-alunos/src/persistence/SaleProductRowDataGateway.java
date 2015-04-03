@@ -13,7 +13,7 @@ public class SaleProductRowDataGateway {
 
 	private static Map<Integer, SaleProductRowDataGateway> saleProductByID = new HashMap<> ();
 
-	private static int saleProductID;
+	private int saleProductID;
 
 	private int nextID = 1;
 
@@ -66,4 +66,14 @@ public class SaleProductRowDataGateway {
 		else
 			return this.quantity * this.product.getFaceValue(); //TODO calcular o desconto
 	}
+	
+	public int getSaleProductID(){
+		return this.saleProductID;
+	}
+	
+	
+	public boolean soParaMostrarQueDa(){  // TODO - VES COMO DA COSTA?
+		return this.product.isEligibleForDiscount();
+	}
+	
 }
