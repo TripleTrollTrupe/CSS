@@ -18,12 +18,12 @@ public class SaleRowDataGateway {
 	//ID of the next Sale
 	private static int nextID=1;
 	//The customer
-	@SuppressWarnings("unused")
+
 	private CustomerRowDataGateway customer;
 	//The list of products belonging to the sale
 	private List<SaleProductRowDataGateway> soldProducts;
 	//Total of the sale
-	@SuppressWarnings("unused")
+
 	private double totalCost;
 	//Status of the sale	
 	@SuppressWarnings("unused")
