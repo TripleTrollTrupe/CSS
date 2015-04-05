@@ -3,12 +3,9 @@ package persistence;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.sql.rowset.FilteredRowSet;
-
 import services.persistence.inMemory.RDBMS.Insert;
 import services.persistence.inMemory.RDBMS.Select;
 import services.persistence.inMemory.RDBMS.Table;
-import services.persistence.inMemory.RDBMS.Update;
 
 public class SaleTableGateway {
 
@@ -46,11 +43,8 @@ public class SaleTableGateway {
 	}
 	
 	public void updateSale(int saleId, int productCode, double qty){
-		Update statement = Update.
-				table(sales).
-				set(s -> s.setDouble("quantity", qty)).
-				where(s -> s.getInt("saleId")==saleId);
-		statement.executeUpdate(); //TODO still working on this
+			updateSaleProduct(productCode,qty);
+		//TODO still working on this
 		// There is no point in updating the sales when adding a product to the sale
 				
 	}

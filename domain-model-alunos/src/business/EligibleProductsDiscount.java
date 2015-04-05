@@ -34,7 +34,7 @@ public class EligibleProductsDiscount extends Discount {
 	public double computeDiscount(Sale sale) { // Kyiys was here
 		Product prod;
 		double disc = 0.0;
-		// TODO: program me!				
+		// TODO: Done by Cocheta			
 		List<SaleProduct> list=sale.getSaleProducts();
 		for(SaleProduct sp : list){
 			prod= sp.getProduct();

@@ -48,7 +48,7 @@ public class SaleService {
 	 * @pre: qty > 0
 	 */
 	public void addProductToSale (int saleId, int productCode, double qty) throws ApplicationException {
-		// TODO: program me!
+		// TODO: program me! update da sale e de saleproduct
 	}
 	
 	

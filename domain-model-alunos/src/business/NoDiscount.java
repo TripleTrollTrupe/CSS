@@ -21,7 +21,7 @@ public class NoDiscount extends Discount {
 	
 	@Override
 	public double computeDiscount(Sale sale) {
-		// TODO: program me!
+		// TODO: Do we really need anything here?!
 		return 0;	
 	}
 	

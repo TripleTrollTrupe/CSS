@@ -90,7 +90,14 @@ public class Customer extends TableModule {
 	 * into play).
 	 */
 	public DiscountType getDiscountType (int customerId) throws ApplicationException {
-		// TODO: program me!
+		ResultSet customer = persistence.customerTableGateway.find(customerId);
+		try {
+			DiscountType discount = (DiscountType) customer.getObject("discountId");
+			return discount;
+		} catch (SQLException e) {
+			System.out.println("No such client exists in the database");
+			e.printStackTrace();
+		}
 		return null;
 	}
 

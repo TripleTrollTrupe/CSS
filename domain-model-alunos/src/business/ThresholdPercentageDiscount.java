@@ -41,7 +41,7 @@ public class ThresholdPercentageDiscount extends Discount {
 	public double computeDiscount(Sale sale) { // Done by Kyiys
 		Product prod;
 		double disc = 0.0;
-		// TODO: program me!				
+		// TODO: Done by cocheta				
 		List<SaleProduct> list=sale.getSaleProducts();
 		for(SaleProduct sp : list){
 			prod= sp.getProduct();

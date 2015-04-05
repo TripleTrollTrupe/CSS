@@ -68,7 +68,7 @@ public class ProcessSaleHandler {
 	 */
 	public void addProductToSale (int prodCod, double qty) 
 					throws ApplicationException { // Done by Kyiys
-		// TODO: program me!
+		// TODO: Done by Kyiys
 		if(currentSale.getStatus()!=SaleStatus.OPEN)
 			throw new ApplicationException("The sale is closed");
 		Product prod = productCatalog.getProduct(prodCod);
@@ -83,7 +83,7 @@ public class ProcessSaleHandler {
 	 * @return The sale's discount, according to the customer discount type
 	 */
 	public double getSaleDiscount ()  { // Done by Kyiys
-		// TODO: program me!
+		// TODO: Done by Kyiys
 		Discount disc =currentSale.getCustomer().getDiscount();
 		return disc.computeDiscount(currentSale);
 	}
