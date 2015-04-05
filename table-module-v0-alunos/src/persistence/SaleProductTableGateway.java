@@ -1,6 +1,7 @@
 package persistence;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import services.persistence.inMemory.RDBMS.Insert;
 import services.persistence.inMemory.RDBMS.Select;
@@ -46,5 +47,25 @@ public class SaleProductTableGateway {
 		statement.executeUpdate();
 	}
 	
-
+	public double totalSaleProduct(int saleProductID){
+		ResultSet saleProduct= getSaleProductbySaleProductID(saleProductID);
+		double qty;
+		try {
+			qty = saleProduct.getDouble("qty");
+			double faceValue = saleProduct.getDouble("faceValue");
+			return (qty*faceValue);
+		} catch (SQLException e) {
+			System.out.println("There is no such saleProduct");
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public ResultSet getSaleProductList(int saleId){
+		return Select.
+				from(saleProduct).
+				where(sp -> sp.getInt("saleID") == saleId).
+				executeQuery();
+	}
+	
 }

@@ -9,6 +9,7 @@ public class Persistence {
 	public final ProductTableDataGateway productTableGateway;
 	public final SaleTableGateway saleTableGateway;
 	public final SaleProductTableGateway saleProductTableGateway;
+	public final DiscountTableGateway discountTableGateway; 
 
 	public Persistence() {
 		database = new Database();
@@ -17,6 +18,7 @@ public class Persistence {
 		productTableGateway = new ProductTableDataGateway(database.products);
 		saleTableGateway = new SaleTableGateway(database.sales);
 		saleProductTableGateway = new SaleProductTableGateway(database.saleProducts);
+		discountTableGateway = new DiscountTableGateway(database.discounts);
 	}
 	
 }

@@ -1,7 +1,13 @@
 package application;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import persistence.DiscountTableGateway;
 import persistence.Persistence;
+import services.persistence.PersistenceException;
 import business.ApplicationException;
+import business.DiscountType;
 
 /**
  * Handles sales' transactions. 
@@ -62,6 +68,43 @@ public class SaleService {
 	 */
 	public double getSaleDiscount (int saleId) throws ApplicationException {
 		// TODO: program me!
+		ResultSet sale=persistence.saleTableGateway.getSaleByID(saleId);
+		try {
+			// get client
+			ResultSet customer = persistence.customerTableGateway.findWithVATNumber(sale.getInt("customer"));
+			// get discount associated with client
+			DiscountType discount = DiscountTableGateway.discountIdToDiscountType(customer.getInt("discountId"));
+			//get table with products
+			if(discount == DiscountType.NO_DISCOUNT)
+				return 0;
+			ResultSet config = persistence.configurationTableGateway.getConfigurationSettings();
+			ResultSet list = persistence.saleProductTableGateway.getSaleProductList(saleId);
+			if(discount == DiscountType.SALE_AMOUNT){
+				//get percentage
+				double percentage = config.getDouble("eligiblePercentage");
+				//get sale total
+				double total =0;
+				while(!list.last()){
+					total += persistence.saleProductTableGateway.totalSaleProduct(list.getInt("id"));
+					list.next();
+				}
+				total += persistence.saleProductTableGateway.totalSaleProduct(list.getInt("id"));
+				
+				//get discount value
+				total *=percentage;
+				return total;
+			}
+			
+		} catch (PersistenceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return 0;
 	}
+	
+	
+	
 }
