@@ -30,9 +30,8 @@ public class SaleService {
 	 * does not exist.
 	 */
 	public int newSale (int vat) throws ApplicationException {
-		// TODO: program me!
+		return persistence.saleTableGateway.addSale(vat);
 			
-		return 0;
 	}
 
 	
