@@ -5,9 +5,6 @@ import java.sql.SQLException;
 
 import persistence.DiscountTableGateway;
 import persistence.Persistence;
-import persistence.ProductTableDataGateway;
-import persistence.SaleProductTableGateway;
-import persistence.SaleTableGateway;
 import services.persistence.PersistenceException;
 import business.ApplicationException;
 import business.DiscountType;

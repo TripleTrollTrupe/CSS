@@ -24,14 +24,15 @@ public class SaleProductTableGateway {
 }
 	
 	//creates sale of a certain product
-	public void addSaleProduct(int productCod, 
+	public void addSaleProduct(int saleId,int productCod, 
 			double quantity) {
 		// create statement
 	//ID is not necessary it is generated when a Row entry is created
 		Insert statement = Insert.
 				into(saleProduct).
 				value("product", productCod).  //TODO not really sure how to do it here
-				value("quantity", quantity);
+				value("quantity", quantity).
+				value("id",saleId);
 		// execute statement
 		statement.executeUpdate();
 	}
