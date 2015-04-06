@@ -56,20 +56,20 @@ public class SaleService {
 	 * 
 	 * @pre: qty > 0
 	 */
-	public void addProductToSale (int saleId, int productCode, double qty) throws ApplicationException {
-		// TODO: program me! update da sale e de saleproduct
-		persistence.saleTableGateway.getSaleByID(saleId);
-		ResultSet size = persistence.productTableGateway.getProductByProdCod(productCode);
-			try {
-				if(size.getDouble("qty")>=qty){
-					persistence.saleProductTableGateway.addSaleProduct(saleId, productCode, qty);
-					size.updateDouble("qty", (size.getDouble("qty")-qty));
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	}
+	  public void addProductToSale (int saleId, int productCode, double qty) throws ApplicationException {
+	        // TODO: program me! update da sale e de saleproduct
+	        persistence.saleTableGateway.getSaleByID(saleId);
+	        ResultSet size = persistence.productTableGateway.getProductByProdCod(productCode);
+	            try {
+	                if(size.getDouble("qty")>=qty){
+	                    persistence.saleProductTableGateway.addSaleProduct(saleId, productCode, qty);
+	                    size.updateDouble("qty", (size.getDouble("qty")-qty));
+	                }
+	            } catch (SQLException e) {
+	                // TODO Auto-generated catch block
+	                e.printStackTrace();
+	            }
+	    }
 	
 	
 	/**

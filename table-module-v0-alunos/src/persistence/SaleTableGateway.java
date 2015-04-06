@@ -41,6 +41,12 @@ public class SaleTableGateway {
 		}
 		return result;
 	}
-	
+	public void addSaleProductToSale(int productCod,int saleID, double qty){
+		//TODO obter produto, criar nova SP com produto e adicionar a sale
+		Insert statement = Insert.
+							into(sales).
+							value("soldProducts", productCod);
+							statement.executeUpdate();
+		}
 	
 }

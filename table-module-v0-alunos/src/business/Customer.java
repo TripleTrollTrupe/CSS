@@ -3,6 +3,7 @@ package business;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import persistence.DiscountTableGateway;
 import persistence.Persistence;
 import services.persistence.PersistenceException;
 
@@ -91,9 +92,11 @@ public class Customer extends TableModule {
 	 */
 	public DiscountType getDiscountType (int customerId) throws ApplicationException {
 		ResultSet customer = persistence.customerTableGateway.find(customerId);
+		
 		try {
-			DiscountType discount = (DiscountType) customer.getObject("discountId");
-			return discount;
+			
+			DiscountType type= DiscountTableGateway.discountIdToDiscountType(customer.getInt("discountId"));
+			return type;
 		} catch (SQLException e) {
 			System.out.println("No such client exists in the database");
 			e.printStackTrace();
