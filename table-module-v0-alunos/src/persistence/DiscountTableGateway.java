@@ -1,13 +1,10 @@
 package persistence;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
-import javax.security.auth.login.Configuration;
-
-import business.DiscountType;
 import services.persistence.inMemory.RDBMS.Select;
 import services.persistence.inMemory.RDBMS.Table;
+import business.DiscountType;
 
 /**
  * Table Data Gateway for the client's table
