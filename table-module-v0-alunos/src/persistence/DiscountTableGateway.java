@@ -1,6 +1,9 @@
 package persistence;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.security.auth.login.Configuration;
 
 import business.DiscountType;
 import services.persistence.inMemory.RDBMS.Select;
@@ -81,5 +84,6 @@ public class DiscountTableGateway {
 		return discountId == SALE_AMOUNT ? DiscountType.SALE_AMOUNT :
 			discountId == ELIGIBLE_PRODUCTS ? DiscountType.ELIGIBLE_PRODUCTS : DiscountType.NO_DISCOUNT;
 	}
+	
 
 }

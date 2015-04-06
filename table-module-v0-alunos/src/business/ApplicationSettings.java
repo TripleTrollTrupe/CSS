@@ -1,6 +1,10 @@
 package business;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import persistence.Persistence;
+import services.persistence.inMemory.RDBMS.Select;
 
 
 /**
@@ -24,6 +28,13 @@ public class ApplicationSettings extends TableModule {
 	 */
 	public double getAmountThreshold () throws ApplicationException {
 		// TODO: program me!
+		ResultSet discount = persistence.discountTableGateway.getDiscountByType(DiscountType.SALE_AMOUNT);
+		try {
+			return discount.getDouble("amountThreshold");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return 0;
 	}
 	
@@ -33,6 +44,13 @@ public class ApplicationSettings extends TableModule {
 	 */
 	public double getAmountThresholdPercentage () throws ApplicationException {
 		// TODO: program me!
+		ResultSet discount = persistence.discountTableGateway.getDiscountByType(DiscountType.SALE_AMOUNT);
+		try {
+			return discount.getDouble("totalAmountPercentage");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
@@ -42,6 +60,13 @@ public class ApplicationSettings extends TableModule {
 	 */
 	public double getEligiblePercentage () throws ApplicationException {
 		// TODO: program me!
+		ResultSet discount = persistence.discountTableGateway.getDiscountByType(DiscountType.ELIGIBLE_PRODUCTS);
+		try {
+			return discount.getDouble("eligiblePercentage");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return 0;
 	}
 }
