@@ -5,6 +5,9 @@ import java.sql.SQLException;
 
 import persistence.DiscountTableGateway;
 import persistence.Persistence;
+import persistence.ProductTableDataGateway;
+import persistence.SaleProductTableGateway;
+import persistence.SaleTableGateway;
 import services.persistence.PersistenceException;
 import business.ApplicationException;
 import business.DiscountType;
@@ -55,6 +58,17 @@ public class SaleService {
 	 */
 	public void addProductToSale (int saleId, int productCode, double qty) throws ApplicationException {
 		// TODO: program me! update da sale e de saleproduct
+		persistence.saleTableGateway.getSaleByID(saleId);
+		ResultSet size = persistence.productTableGateway.getProductByProdCod(productCode);
+			try {
+				if(size.getDouble("qty")>=qty){
+					persistence.saleProductTableGateway.addSaleProduct(saleId, productCode, qty);
+					size.updateDouble("qty", (size.getDouble("qty")-qty));
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 	
 	
@@ -67,7 +81,7 @@ public class SaleService {
 	 * integrity error, such as the discount id associated with the sale is not found, etc.
 	 */
 	public double getSaleDiscount (int saleId) throws ApplicationException {
-		// TODO: program me!
+		// Done by Kyiys
 		ResultSet sale=persistence.saleTableGateway.getSaleByID(saleId);
 		try {
 			// get client
@@ -87,6 +101,27 @@ public class SaleService {
 				while(!list.last()){
 					total += persistence.saleProductTableGateway.totalSaleProduct(list.getInt("id"));
 					list.next();
+				}
+				total += persistence.saleProductTableGateway.totalSaleProduct(list.getInt("id"));
+				
+				//get discount value
+				total *=percentage;
+				return total;
+			}
+			
+			if(discount == DiscountType.ELIGIBLE_PRODUCTS){
+				//product of the saleProduct
+				ResultSet product = persistence.productTableGateway.getProductByProdCod(list.getInt("product"));
+				//get percentage
+				double percentage = config.getDouble("eligiblePercentage");
+				//get sale total
+				double total =0;
+				while(!list.last()){
+					if(product.getString("discountEligibility").equals("E"))
+						total += persistence.saleProductTableGateway.totalSaleProduct(list.getInt("id"));
+					list.next();
+					product.close();
+					product = persistence.productTableGateway.getProductByProdCod(list.getInt("product"));
 				}
 				total += persistence.saleProductTableGateway.totalSaleProduct(list.getInt("id"));
 				

@@ -42,11 +42,5 @@ public class SaleTableGateway {
 		return result;
 	}
 	
-	public void updateSale(int saleId, int productCode, double qty){
-			updateSaleProduct(productCode,qty);
-		//TODO still working on this
-		// There is no point in updating the sales when adding a product to the sale
-				
-	}
 	
 }
