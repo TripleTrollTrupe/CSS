@@ -54,7 +54,6 @@ public class SaleService {
 	 * @pre: qty > 0
 	 */
 	  public void addProductToSale (int saleId, int productCode, double qty) throws ApplicationException {
-	        // TODO: program me! update da sale e de saleproduct
 	        persistence.saleTableGateway.getSaleByID(saleId);
 	        ResultSet size = persistence.productTableGateway.getProductByProdCod(productCode);
 	            try {
@@ -63,7 +62,6 @@ public class SaleService {
 	                    size.updateDouble("qty", (size.getDouble("qty")-qty));
 	                }
 	            } catch (SQLException e) {
-	                // TODO Auto-generated catch block
 	                e.printStackTrace();
 	            }
 	    }
@@ -128,10 +126,8 @@ public class SaleService {
 			}
 			
 		} catch (PersistenceException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return 0;

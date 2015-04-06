@@ -30,7 +30,7 @@ public class SaleProductTableGateway {
 	//ID is not necessary it is generated when a Row entry is created
 		Insert statement = Insert.
 				into(saleProduct).
-				value("product", productCod).  //TODO not really sure how to do it here
+				value("product", productCod). 
 				value("quantity", quantity).
 				value("id",saleId);
 		// execute statement

@@ -26,12 +26,10 @@ public class ApplicationSettings extends TableModule {
 	 * @throws ApplicationException When there is no application settings data.
 	 */
 	public double getAmountThreshold () throws ApplicationException {
-		// TODO: program me!
 		ResultSet discount = persistence.discountTableGateway.getDiscountByType(DiscountType.SALE_AMOUNT);
 		try {
 			return discount.getDouble("amountThreshold");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return 0;
@@ -42,12 +40,10 @@ public class ApplicationSettings extends TableModule {
 	 * @throws ApplicationException When there is no application settings data.
 	 */
 	public double getAmountThresholdPercentage () throws ApplicationException {
-		// TODO: program me!
 		ResultSet discount = persistence.discountTableGateway.getDiscountByType(DiscountType.SALE_AMOUNT);
 		try {
 			return discount.getDouble("totalAmountPercentage");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return 0;
@@ -58,12 +54,10 @@ public class ApplicationSettings extends TableModule {
 	 * @throws ApplicationException When there is no application settings data.
 	 */
 	public double getEligiblePercentage () throws ApplicationException {
-		// TODO: program me!
 		ResultSet discount = persistence.discountTableGateway.getDiscountByType(DiscountType.ELIGIBLE_PRODUCTS);
 		try {
 			return discount.getDouble("eligiblePercentage");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return 0;
