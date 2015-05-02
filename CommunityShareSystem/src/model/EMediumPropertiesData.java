@@ -14,14 +14,13 @@ import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity
+@Table
 public class EMediumPropertiesData implements Cloneable {
 
-	@Id
-	@GeneratedValue(strategy = AUTO)
-	private int id;
 	
+	@SuppressWarnings("rawtypes")
 	@ElementCollection
 	private Map<EMediumAttribute,EMediumValue> attributes;
 	
@@ -29,6 +28,7 @@ public class EMediumPropertiesData implements Cloneable {
 	@Column(length = 35)
 	private EMediumType type;
 	
+	@SuppressWarnings("rawtypes")
 	public EMediumPropertiesData() {
 		attributes = new HashMap<EMediumAttribute,EMediumValue>();
 	}
@@ -37,7 +37,7 @@ public class EMediumPropertiesData implements Cloneable {
 		return attributes.get(attribute);
 	}
 
-	public void addAttribute(EMediumAttribute attribute, EMediumValue value) {
+	public void addAttribute(EMediumAttribute attribute, EMediumValue<?> value) {
 		attributes.put(attribute, value);
 	}
 	
@@ -45,7 +45,7 @@ public class EMediumPropertiesData implements Cloneable {
 		return this.type == type; 
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public EMediumPropertiesData clone() {
 		EMediumPropertiesData newData = null;
@@ -54,7 +54,7 @@ public class EMediumPropertiesData implements Cloneable {
 			newData.attributes = new HashMap<EMediumAttribute, EMediumValue>(attributes);
 			if (attributes.containsKey(EMediumAttribute.TAGS)) {
 				
-				EMediumValue cloned = new EMediumValue(new LinkedList<String>((Collection<? extends String>)attributes.get(EMediumAttribute.TAGS).getValue()));
+				EMediumValue<?> cloned = new EMediumValue<Object>(new LinkedList<String>((Collection<? extends String>)attributes.get(EMediumAttribute.TAGS).getValue()));
 				newData.attributes.put(EMediumAttribute.TAGS, cloned);
 				
 			}

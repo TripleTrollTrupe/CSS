@@ -1,10 +1,21 @@
 package model.lendables;
 
+import static javax.persistence.GenerationType.AUTO;
+
 import java.io.File;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.swing.event.EventListenerList;
 
 import model.EMedium;
@@ -14,11 +25,23 @@ import model.EMediumType;
 import model.EMediumValue;
 import model.events.EMediumListener;
 
+@Entity
 public class Lendable implements EMedium {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	@Column(nullable = false)
 	private EMediumType type;
+	
+	@OneToOne(optional = false, cascade = CascadeType.ALL) // nao sei se é CascadeType, mas parece coincidir
 	private EMediumPropertiesData properties;
+	
+	@Column(nullable= false , unique= true) // o ficheiro é unico para o Lendable pois é o ficheiro a partilhar
 	private File file;
+	
+	@Enumerated(EnumType.ORDINAL) 
 	private int licenses;
 	private EventListenerList listeners;
 		
