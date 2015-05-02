@@ -1,6 +1,7 @@
 package model.lendables;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import model.EMedium;
 import model.EMediumAttribute;
 import model.EMediumPropertiesData;
 import model.EMediumType;
+import model.EMediumValue;
 import model.events.EMediumListener;
 
 public class Lendable implements EMedium {
@@ -80,7 +82,9 @@ public class Lendable implements EMedium {
 	// @pre hasLicenses()
 	public void rent() {
 		licenses--;
-		properties.addAttribute(EMediumAttribute.LICENSES, licenses);
+		EMediumValue value = new EMediumValue(licenses);
+		//EMediumValueObject lin = new EMediumValueObject(licenses); not sure
+		properties.addAttribute(EMediumAttribute.LICENSES, value);
 	}
 
 	@Override

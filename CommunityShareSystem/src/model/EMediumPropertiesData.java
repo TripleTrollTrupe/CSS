@@ -1,24 +1,43 @@
 package model;
 
+import static javax.persistence.EnumType.STRING;
+import static javax.persistence.GenerationType.AUTO;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class EMediumPropertiesData implements Cloneable {
 
-	private Map<EMediumAttribute,Object> attributes;
+	@Id
+	@GeneratedValue(strategy = AUTO)
+	private int id;
+	
+	@ElementCollection
+	private Map<EMediumAttribute,EMediumValue> attributes;
+	
+	@Enumerated(STRING)
+	@Column(length = 35)
 	private EMediumType type;
 	
 	public EMediumPropertiesData() {
-		attributes = new HashMap<EMediumAttribute,Object>();
+		attributes = new HashMap<EMediumAttribute,EMediumValue>();
 	}
 
 	public Object getAttribute(EMediumAttribute attribute) {
 		return attributes.get(attribute);
 	}
 
-	public void addAttribute(EMediumAttribute attribute, Object value) {
+	public void addAttribute(EMediumAttribute attribute, EMediumValue value) {
 		attributes.put(attribute, value);
 	}
 	
@@ -32,11 +51,12 @@ public class EMediumPropertiesData implements Cloneable {
 		EMediumPropertiesData newData = null;
 		try {
 			newData = (EMediumPropertiesData) super.clone();
-			newData.attributes = new HashMap<EMediumAttribute, Object>(attributes);
+			newData.attributes = new HashMap<EMediumAttribute, EMediumValue>(attributes);
 			if (attributes.containsKey(EMediumAttribute.TAGS)) {
-				newData.attributes.put(EMediumAttribute.TAGS, 
-						new LinkedList<String>((Collection<? extends String>) 
-								attributes.get(EMediumAttribute.TAGS)));
+				
+				EMediumValue cloned = new EMediumValue(new LinkedList<String>((Collection<? extends String>)attributes.get(EMediumAttribute.TAGS).getValue()));
+				newData.attributes.put(EMediumAttribute.TAGS, cloned);
+				
 			}
 		} catch (CloneNotSupportedException e) {
 			// never happens
