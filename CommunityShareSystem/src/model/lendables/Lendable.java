@@ -1,9 +1,6 @@
 package model.lendables;
 
-import static javax.persistence.GenerationType.AUTO;
-
 import java.io.File;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.swing.event.EventListenerList;
 
@@ -43,6 +41,8 @@ public class Lendable implements EMedium {
 	
 	@Enumerated(EnumType.ORDINAL) 
 	private int licenses;
+	
+	@OneToMany
 	private EventListenerList listeners;
 		
 	public Lendable(EMediumType type, EMediumPropertiesData properties) {
