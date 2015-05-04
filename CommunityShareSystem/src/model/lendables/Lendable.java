@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -30,12 +31,14 @@ public class Lendable implements EMedium {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(nullable = false)
+	@Embedded
 	private EMediumType type;
 	
+	@Embedded
 	@OneToOne(optional = false, cascade = CascadeType.ALL) // nao sei se é CascadeType, mas parece coincidir
 	private EMediumPropertiesData properties;
 	
+	@Embedded
 	@Column(nullable= false , unique= true) // o ficheiro é unico para o Lendable pois é o ficheiro a partilhar
 	private File file;
 	

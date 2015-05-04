@@ -14,19 +14,23 @@ import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.MapKeyColumn;
 
-@Table
+@Entity
 public class EMediumPropertiesData implements Cloneable {
 
+	@Id
+	@GeneratedValue(strategy = AUTO)
+	private int id;
 	
 	@SuppressWarnings("rawtypes")
-	@ElementCollection
+	@MapKeyColumn
 	private Map<EMediumAttribute,EMediumValue> attributes;
 	
 	@Enumerated(STRING)
 	@Column(length = 35)
 	private EMediumType type;
+	
 	
 	@SuppressWarnings("rawtypes")
 	public EMediumPropertiesData() {
