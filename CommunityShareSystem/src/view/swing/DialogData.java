@@ -2,11 +2,13 @@ package view.swing;
 
 import model.EMediumAttribute;
 import model.EMediumPropertiesData;
+import model.EMediumValue;
 
 public class DialogData {
 	public final EMediumPropertiesData data;
 	private boolean accepted;
 	
+
 	public DialogData() {
 		this.data = new EMediumPropertiesData();
 	}
@@ -20,7 +22,9 @@ public class DialogData {
 	}
 
 	public void addAttribute(EMediumAttribute attribute, Object value) {
-		data.addAttribute(attribute, value);
+		@SuppressWarnings("rawtypes")
+	    EMediumValue valueObj = new EMediumValue(value);
+	    data.addAttribute(attribute, valueObj);
 	}
 	
 	public boolean didUserAccept() {

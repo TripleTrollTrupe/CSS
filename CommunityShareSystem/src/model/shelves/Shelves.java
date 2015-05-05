@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 import javax.naming.OperationNotSupportedException;
-import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
