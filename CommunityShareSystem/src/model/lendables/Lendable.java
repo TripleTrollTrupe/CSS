@@ -32,6 +32,7 @@ public class Lendable implements EMedium {
 	private int id;
 	
 	@Embedded
+	@Column
 	private EMediumType type;
 	
 	@Embedded
@@ -42,7 +43,8 @@ public class Lendable implements EMedium {
 	@Column(nullable= false , unique= true) // o ficheiro é unico para o Lendable pois é o ficheiro a partilhar
 	private File file;
 	
-	@Enumerated(EnumType.ORDINAL) 
+	@Enumerated(EnumType.ORDINAL)
+	@Column
 	private int licenses;
 	
 	@OneToMany
@@ -108,7 +110,7 @@ public class Lendable implements EMedium {
 	// @pre hasLicenses()
 	public void rent() {
 		licenses--;
-		EMediumValue value = new EMediumValue(licenses);
+		EMediumValue<?> value = new EMediumValue<Object>(licenses);
 		//EMediumValueObject lin = new EMediumValueObject(licenses); not sure
 		properties.addAttribute(EMediumAttribute.LICENSES, value);
 	}

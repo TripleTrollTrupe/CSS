@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.swing.event.EventListenerList;
@@ -18,6 +20,7 @@ import model.events.EMediumListener;
 import model.lendables.Lendable;
 import adts.Pair;
 
+@Entity
 public class Rental implements EMedium {
 	
 	@Column
@@ -29,9 +32,9 @@ public class Rental implements EMedium {
 	@Column
 	private boolean expired;
 	
+	@OneToMany
 	@ElementCollection
 	private List<String> annotations;
-	
 	
 	protected EventListenerList listeners;
 	

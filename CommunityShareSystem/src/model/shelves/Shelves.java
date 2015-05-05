@@ -5,6 +5,10 @@ import java.util.Iterator;
 import java.util.Map;
 
 import javax.naming.OperationNotSupportedException;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.MapKeyColumn;
+import javax.persistence.Table;
 import javax.swing.event.EventListenerList;
 
 import model.events.EMediaCollectionListener;
@@ -13,9 +17,13 @@ import model.events.ShelfCollectionListener;
 import model.rentals.Rental;
 import model.shelves.criteria.Criterion;
 
+@Table
 public class Shelves implements Iterable<Shelf> {
 
+	@MapKeyColumn
 	private Map<String, Shelf> shelves;
+	
+	@Embedded
 	private NormalShelf myRentals;
 	
 	private EventListenerList listeners;

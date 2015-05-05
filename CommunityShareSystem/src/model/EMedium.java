@@ -11,15 +11,22 @@ public interface EMedium extends Comparable<EMedium> {
 	
 	@Embedded
 	File getFile ();
+	
 	@Embedded
 	String getTitle ();
+	
 	@Embedded
 	String getAuthor();
+	
 	@Embedded
 	String getMimeType();
+	
+	
 	Iterable<String> getTags();
+	
 	@Embedded
 	EMediumType getType();
+	
 	void addEMediumListener(EMediumListener listener);
 	void removeEMediumListener(EMediumListener listener);
 	boolean canBookmarkPage();

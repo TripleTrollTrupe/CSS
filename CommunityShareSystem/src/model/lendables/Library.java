@@ -4,16 +4,24 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import javax.persistence.Column;
+import javax.persistence.MapKeyColumn;
+import javax.persistence.Table;
+
 import model.EMedium;
 import model.EMediumPropertiesData;
 import model.EMediumType;
 
+@Table
 public class Library implements Iterable<Lendable> {
 
 	// need the Map from lendable to lendable 
 	// because I want to sure I change the lendable in the
 	// library and not other "equal" to it.
+	@MapKeyColumn
 	private Map<Lendable, Lendable> lendables;
+	
+	@Column(nullable = true) // ? pode ser null quando a library nao tem nenhum lendable
 	private Lendable lastAddedLendable;
 		
 	public Library () {
