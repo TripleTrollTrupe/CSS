@@ -4,14 +4,29 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.naming.OperationNotSupportedException;
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import model.events.RentalCollectionEvent;
 import model.rentals.Rental;
 import model.shelves.criteria.Criterion;
 
+@Table
+@Embeddable
 public class SmartShelf extends Shelf {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	@Embedded
 	private Criterion criteria;
+	
+	@Embedded
 	private Shelf myRentals;
 	
 	public SmartShelf(String name, Shelf myRentals, Criterion criteria) {

@@ -4,20 +4,50 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.swing.event.EventListenerList;
 
 import model.EMedium;
 import model.EMediumAttribute;
 import model.EMediumPropertiesData;
 import model.EMediumType;
+import model.EMediumValue;
 import model.events.EMediumListener;
 
+@Entity
 public class Lendable implements EMedium {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	@Embedded
+	@Column
 	private EMediumType type;
+	
+	@Embedded
+	@OneToOne(optional = false, cascade = CascadeType.ALL) // nao sei se é CascadeType, mas parece coincidir
 	private EMediumPropertiesData properties;
+	
+	@Embedded
+	@Column(nullable= false , unique= true) // o ficheiro é unico para o Lendable pois é o ficheiro a partilhar
 	private File file;
+	
+	@Enumerated(EnumType.ORDINAL)
+	@Column
 	private int licenses;
+	
+	@OneToMany
 	private EventListenerList listeners;
 		
 	public Lendable(EMediumType type, EMediumPropertiesData properties) {
@@ -80,7 +110,9 @@ public class Lendable implements EMedium {
 	// @pre hasLicenses()
 	public void rent() {
 		licenses--;
-		properties.addAttribute(EMediumAttribute.LICENSES, licenses);
+		EMediumValue<?> value = new EMediumValue<Object>(licenses);
+		//EMediumValueObject lin = new EMediumValueObject(licenses); not sure
+		properties.addAttribute(EMediumAttribute.LICENSES, value);
 	}
 
 	@Override
