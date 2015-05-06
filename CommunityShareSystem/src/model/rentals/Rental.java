@@ -5,12 +5,6 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.swing.event.EventListenerList;
 
 import model.EMedium;
@@ -20,22 +14,12 @@ import model.events.EMediumListener;
 import model.lendables.Lendable;
 import adts.Pair;
 
-@Entity
 public class Rental implements EMedium {
-	
-	@Column
+
 	private Lendable lendable;
-	
-	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date timestamp;
-	
-	@Column
 	private boolean expired;
-	
-	@OneToMany
-	@ElementCollection
 	private List<String> annotations;
-	
 	protected EventListenerList listeners;
 	
 	public Rental(Lendable lendable) {
