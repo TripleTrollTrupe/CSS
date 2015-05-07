@@ -1,5 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-	<persistence-unit name="CommunityShareSystem">
+	<persistence-unit name="CommunityShareSystem" transaction-type="RESOURCE_LOCAL">
+		<class>adts.Pair</class>
+		<class>controller.swing.BookshelfEMediaController</class>
+		<class>controller.swing.BookshelfEMediaControllerImpl</class>
+		<class>controller.swing.BookshelfTreeController</class>
+		<class>controller.swing.BookshelfTreeControllerImpl</class>
+		<class>controller.swing.EMediumShowController</class>
+		<class>controller.swing.IBookshelfEMediaController</class>
+		<class>controller.swing.IBookshelfTreeController</class>
+		<class>css.AppProperties</class>
+		<class>css.CSSBookshelfUIDelegate</class>
+		<class>css.CSSEMediaUIDelegate</class>
+		<class>css.CSSEMediumMetadataUIDelegate</class>
+		<class>css.StartUp</class>
+		<class>delegates.BookshelfUIDelegate</class>
+		<class>delegates.EMediumMetadataUIDelegate</class>
+		<class>delegates.EMediumUIDelegate</class>
+		<class>model.CSS</class>
+		<class>model.EMedium</class>
+		<class>model.EMediumAttribute</class>
+		<class>model.EMediumPropertiesData</class>
+		<class>model.EMediumType</class>
+		<class>model.EMediumValue</class>
+		<class>model.EMediumValueObject</class>
+		<class>model.LibraryFacade</class>
+		<class>model.ShelvesFacade</class>
+		<class>model.events.EMediaCollectionListener</class>
+		<class>model.events.EMediaEvent</class>
+		<class>model.events.EMediumListener</class>
+		<class>model.events.PropertiesChangedDocumentEvent</class>
+		<class>model.events.RentalCollectionEvent</class>
+		<class>model.events.ShelfCollectionEvent</class>
+		<class>model.events.ShelfCollectionListener</class>
+		<class>model.lendables.Lendable</class>
+		<class>model.lendables.Library</class>
+		<class>model.rentals.BookRental</class>
+		<class>model.rentals.NoSuchPageException</class>
+		<class>model.rentals.Page</class>
+		<class>model.rentals.Rental</class>
+		<class>model.rentals.RentalFactory</class>
+		<class>model.shelves.NormalShelf</class>
+		<class>model.shelves.Shelf</class>
+		<class>model.shelves.Shelves</class>
+		<class>model.shelves.SmartShelf</class>
+		<class>model.shelves.criteria.AndCriteria</class>
+		<class>model.shelves.criteria.AuthorCriteria</class>
+		<class>model.shelves.criteria.CompoundCriteria</class>
+		<class>model.shelves.criteria.Criterion</class>
+		<class>model.shelves.criteria.NotCriteria</class>
+		<class>model.shelves.criteria.OrCriteria</class>
+		<class>model.shelves.criteria.RecentlyAddedCriteria</class>
+		<class>services.viewer.Viewer</class>
+		<class>services.viewer.ViewerFactory</class>
+		<class>view.IBookshelfUI</class>
+		<class>view.StartupUI</class>
+		<class>view.swing.BookshelfUI</class>
+		<class>view.swing.BookshelfUIImpl</class>
+		<class>view.swing.DialogData</class>
+		<class>view.swing.DocumentUIFullscreen</class>
+		<class>view.swing.EMediumDropTarget</class>
+		<class>view.swing.EMediumLabel</class>
+		<class>view.swing.EMediumMetadataUI</class>
+		<class>view.swing.EMediumPropertiesUI</class>
+		<class>view.swing.EMediumShowUI</class>
+		<class>view.swing.LibraryDropTarget</class>
+		<class>view.swing.ModifiedFlowLayout</class>
+		<class>view.swing.ShelfDropTarget</class>
+		<class>view.swing.Thumbnail</class>
+		<class>view.swing.ThumbnailFactory</class>
+		<class>view.swing.TreeNodeUserData</class>
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://dbserver.alunos.di.fc.ul.pt"/>
+			<property name="javax.persistence.jdbc.user" value="css013"/>
+			<property name="javax.persistence.jdbc.password" value="css013"/>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+		</properties>
 	</persistence-unit>
 </persistence>
