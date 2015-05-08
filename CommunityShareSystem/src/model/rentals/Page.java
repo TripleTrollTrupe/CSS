@@ -35,7 +35,6 @@ public class Page {
 	@Column
 	private int pageNum;
 	
-	@OneToMany //?
 	private EventListenerList listeners;
 	
 	public Page (int pageNum, EventListenerList listeners) {
