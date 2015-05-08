@@ -1,5 +1,7 @@
 package model.rentals;
 
+import static javax.persistence.CascadeType.ALL;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -7,21 +9,23 @@ import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.MapKeyColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import model.lendables.Lendable;
 import adts.Pair;
 
-@Entity
+@Table
 public class BookRental extends Rental {
 
 	@Column
 	private int lastPageVisited;
 	
-	@MapKeyColumn
+	@OneToMany(cascade = ALL)
+    @MapKeyColumn(name="PAGES_KEY", table="BOOKRENTAL_PAGE")
 	private Map<Integer, Page> pages;
-
+	
 	public BookRental(Lendable book) {
 		super(book);
 		pages = new TreeMap<Integer, Page> (); 

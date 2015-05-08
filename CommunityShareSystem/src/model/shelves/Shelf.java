@@ -30,6 +30,10 @@ public abstract class Shelf implements Iterable<Rental>,
 		listeners = new EventListenerList();
 	}
 	
+	public Shelf() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getName () {
 		return name;
 	}

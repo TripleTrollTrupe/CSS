@@ -28,7 +28,6 @@ public class Lendable implements EMedium {
 	@Id
 	private int id;
 	
-	@Embedded
 	@Column
 	private EMediumType type;
 	
@@ -45,6 +44,10 @@ public class Lendable implements EMedium {
 	private int licenses;
 	
 	private EventListenerList listeners;
+	
+	public Lendable(){
+		
+	}
 		
 	public Lendable(EMediumType type, EMediumPropertiesData properties) {
 		this.type = type;

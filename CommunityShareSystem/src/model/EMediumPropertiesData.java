@@ -9,19 +9,11 @@ import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.MapKeyColumn;
-import static javax.persistence.GenerationType.SEQUENCE;
 
-@Entity
 @Embeddable
 public class EMediumPropertiesData implements Cloneable {
-
-	@Id @GeneratedValue(strategy = SEQUENCE)
-	private int id;
 	
 	@SuppressWarnings("rawtypes")
 	@MapKeyColumn

@@ -31,6 +31,10 @@ public class Page {
 	
 	private EventListenerList listeners;
 	
+	public Page(){
+		
+	}
+	
 	public Page (int pageNum, EventListenerList listeners) {
 		annotations = new LinkedList<String>();
 		this.pageNum = pageNum;

@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.naming.OperationNotSupportedException;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 
 import model.events.RentalCollectionEvent;
@@ -14,10 +13,13 @@ import model.shelves.criteria.Criterion;
 @Entity
 public class SmartShelf extends Shelf {
 
-	@Embedded
 	private Criterion criteria;
 	
 	private Shelf myRentals;
+	
+	public SmartShelf(){
+		super();
+	}
 	
 	public SmartShelf(String name, Shelf myRentals, Criterion criteria) {
 		super(name);

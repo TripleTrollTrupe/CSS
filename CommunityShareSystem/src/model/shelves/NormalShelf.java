@@ -1,11 +1,14 @@
 package model.shelves;
 
+import static javax.persistence.CascadeType.ALL;
+
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
 import javax.persistence.Entity;
 import javax.persistence.MapKeyColumn;
+import javax.persistence.OneToMany;
 
 import model.events.EMediaCollectionListener;
 import model.events.RentalCollectionEvent;
@@ -18,8 +21,14 @@ public class NormalShelf extends Shelf {
 	// because I want to sure I change the Rental in the
 	// Shelf and not other "equal" to it.
 	
-	@MapKeyColumn
+	@OneToMany(cascade = ALL)
+    @MapKeyColumn(name="RENTALS")
 	private Map<Rental, Rental> rentals;
+	
+	public NormalShelf(){
+		super();
+		rentals = new TreeMap<Rental,Rental> ();
+	}
 
 	public NormalShelf (String name) {
 		super(name);
