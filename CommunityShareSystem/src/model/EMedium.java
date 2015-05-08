@@ -4,8 +4,11 @@ import java.io.File;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
+import javax.persistence.Inheritance;
+
 import model.events.EMediumListener;
 
+@Inheritance
 @Embeddable
 public interface EMedium extends Comparable<EMedium> {
 	

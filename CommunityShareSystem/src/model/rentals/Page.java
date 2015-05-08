@@ -5,11 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
-import javax.persistence.Embeddable;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.swing.event.EventListenerList;
@@ -17,11 +13,10 @@ import javax.swing.event.EventListenerList;
 import model.events.EMediaEvent;
 import model.events.EMediumListener;
 
-@Embeddable
+@Entity
 public class Page {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column
@@ -31,7 +26,6 @@ public class Page {
 	@ElementCollection
 	private List<String> annotations;
 	
-	@Enumerated(EnumType.ORDINAL)
 	@Column
 	private int pageNum;
 	

@@ -1,7 +1,6 @@
 package model;
 
 import static javax.persistence.EnumType.STRING;
-import static javax.persistence.GenerationType.AUTO;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -9,17 +8,19 @@ import java.util.LinkedList;
 import java.util.Map;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MapKeyColumn;
+import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
+@Embeddable
 public class EMediumPropertiesData implements Cloneable {
 
-	@Id
-	@GeneratedValue(strategy = AUTO)
+	@Id @GeneratedValue(strategy = SEQUENCE)
 	private int id;
 	
 	@SuppressWarnings("rawtypes")

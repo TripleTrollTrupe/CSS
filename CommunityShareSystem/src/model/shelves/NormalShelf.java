@@ -4,28 +4,19 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
-import javax.persistence.Embeddable;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Entity;
 import javax.persistence.MapKeyColumn;
-import javax.persistence.Table;
 
 import model.events.EMediaCollectionListener;
 import model.events.RentalCollectionEvent;
 import model.rentals.Rental;
 
-@Embeddable
-@Table
+@Entity
 public class NormalShelf extends Shelf {
 	
 	// need the Map from Rental to Rental 
 	// because I want to sure I change the Rental in the
 	// Shelf and not other "equal" to it.
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
 	
 	@MapKeyColumn
 	private Map<Rental, Rental> rentals;

@@ -4,12 +4,11 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.swing.event.EventListenerList;
@@ -20,13 +19,13 @@ import model.EMediumPropertiesData;
 import model.EMediumType;
 import model.EMediumValue;
 import model.events.EMediumListener;
-import javax.persistence.Basic;
+
+import org.eclipse.persistence.annotations.Mutable;
 
 @Entity
 public class Lendable implements EMedium {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Embedded
@@ -37,12 +36,12 @@ public class Lendable implements EMedium {
 	@OneToOne(optional = false, cascade = CascadeType.ALL) // nao sei se é CascadeType, mas parece coincidir
 	private EMediumPropertiesData properties;
 	
-	@Embedded
 	@Column(nullable= false , unique= true) // o ficheiro é unico para o Lendable pois é o ficheiro a partilhar
 	private File file;
 	
 	@Column
 	@Basic(optional = false)
+	@Mutable
 	private int licenses;
 	
 	private EventListenerList listeners;

@@ -1,5 +1,7 @@
 package model.rentals;
 
+import static javax.persistence.CascadeType.REMOVE;
+
 import java.io.File;
 import java.util.Date;
 import java.util.LinkedList;
@@ -8,7 +10,9 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.swing.event.EventListenerList;
@@ -23,7 +27,10 @@ import adts.Pair;
 @Entity
 public class Rental implements EMedium {
 	
-	@Column
+	@Id
+	private int id;
+	
+	@OneToOne(cascade = REMOVE)
 	private Lendable lendable;
 	
 	@Temporal(value = TemporalType.TIMESTAMP)
@@ -35,7 +42,7 @@ public class Rental implements EMedium {
 	@OneToMany
 	@ElementCollection
 	private List<String> annotations;
-	
+
 	protected EventListenerList listeners;
 	
 	public Rental(Lendable lendable) {

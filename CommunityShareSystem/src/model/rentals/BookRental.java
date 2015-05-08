@@ -8,22 +8,17 @@ import java.util.TreeMap;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.MapKeyColumn;
-import javax.persistence.OneToMany;
 
-import adts.Pair;
 import model.lendables.Lendable;
+import adts.Pair;
 
 @Entity
 public class BookRental extends Rental {
 
-	@Enumerated(EnumType.ORDINAL)
 	@Column
 	private int lastPageVisited;
 	
-	@OneToMany
 	@MapKeyColumn
 	private Map<Integer, Page> pages;
 
