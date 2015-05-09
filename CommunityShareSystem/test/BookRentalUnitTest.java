@@ -1,6 +1,5 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.BDDMockito.given;
@@ -67,10 +66,10 @@ public class BookRentalUnitTest {
 		strings.add("test1");
 		strings.add("test2");
 		strings.add("test3");
-		bookrental.addAnnotation(1,strings.get(1));
-		bookrental.addAnnotation(1, strings.get(2));
-		bookrental.addAnnotation(2,strings.get(3));
-		assertEquals(bookrental.getAnnotatins(),strings);
+		bookrental.addAnnotation(1,strings.get(0));
+		bookrental.addAnnotation(1, strings.get(1));
+		bookrental.addAnnotation(2,strings.get(2));
+		assertEquals(bookrental.getAnnotatins().toString(),strings);
 		
 	}
 
@@ -98,34 +97,34 @@ public class BookRentalUnitTest {
 
 	@Test
 	public final void testAddAnnotationIntString() {
-		//TODO think of a way to do for multiple pages
-		bookrental.addAnnotation(1, "test");
-		assertEquals(bookrental.getAnnotationText(1),"test");
-		bookrental.addAnnotation(2,"test2");
+		//TODO o tamanho das anotacoes nao incrementa (?)
+		bookrental.addAnnotation(0, "test");
+		assertEquals(bookrental.getAnnotationText(0),"test");
+		bookrental.addAnnotation(1,"test2");
 		assertEquals(bookrental.getAnnotationText(2),"test2");
 	}
 
 	@Test
 	public final void testRemoveAnnotationIntInt() {
 		//TODO better tests
-		bookrental.addAnnotation(1, "test");
-		bookrental.addAnnotation(2, "test2");
-		bookrental.addAnnotation(3, "test3");
-		bookrental.addAnnotation(1, "test");
-		bookrental.removeAnnotation(2, 1);
-		assertNull(bookrental.getAnnotations(1));
+		bookrental.addAnnotation(0, "test");
+		bookrental.addAnnotation(1, "test2");
+		bookrental.addAnnotation(2, "test3");
+		bookrental.addAnnotation(0, "test");
+		bookrental.removeAnnotation(1, 0);
+		assertEquals(bookrental.getAnnotations(1),new ArrayList<>());
 		assertEquals(bookrental.getAnnotatins().size(),3);
 	}
 
 	@Test
 	public final void testGetAnnotationTextIntInt() {
 		//args: pagenum, annotnum
-		bookrental.addAnnotation(1, "test");
-		bookrental.addAnnotation(1,"test2");
-		bookrental.addAnnotation(2,"test3");
-		assertEquals(bookrental.getAnnotationText(1, 1),"test");
-		assertEquals(bookrental.getAnnotationText(1, 2),"test2");
-		assertEquals(bookrental.getAnnotationText(2, 1),"test2");
+		bookrental.addAnnotation(0, "test");
+		bookrental.addAnnotation(0,"test2");
+		bookrental.addAnnotation(1,"test3");
+		assertEquals(bookrental.getAnnotationText(0, 0),"test");
+		assertEquals(bookrental.getAnnotationText(0, 1),"test2");
+		assertEquals(bookrental.getAnnotationText(1, 0),"test3");
 		
 	}
 
@@ -160,7 +159,7 @@ public class BookRentalUnitTest {
 	@Test
 	public final void testGetLastPageVisited() {
 		//TODO multiple scenarios
-		assertNull(bookrental.getLastPageVisited()); //or whatever the default value is
+		assertEquals(bookrental.getLastPageVisited(),0); //or whatever the default value is
 		bookrental.setLastPageVisited(1);
 		assertEquals(bookrental.getLastPageVisited(),1);
 		
