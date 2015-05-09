@@ -6,15 +6,15 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
-import javax.persistence.Entity;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import model.events.EMediaCollectionListener;
 import model.events.RentalCollectionEvent;
 import model.rentals.Rental;
 
-@Entity
+@Table
 public class NormalShelf extends Shelf {
 	
 	// need the Map from Rental to Rental 

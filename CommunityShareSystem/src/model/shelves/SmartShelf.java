@@ -4,13 +4,13 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.naming.OperationNotSupportedException;
-import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import model.events.RentalCollectionEvent;
 import model.rentals.Rental;
 import model.shelves.criteria.Criterion;
 
-@Entity
+@Table
 public class SmartShelf extends Shelf {
 
 	private Criterion criteria;

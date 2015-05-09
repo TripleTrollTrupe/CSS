@@ -4,22 +4,19 @@ import static javax.persistence.InheritanceType.SINGLE_TABLE;
 
 import javax.naming.OperationNotSupportedException;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
+import javax.persistence.Table;
 import javax.swing.event.EventListenerList;
 
 import model.events.EMediaCollectionListener;
 import model.rentals.Rental;
 
-@Entity
+@Table
 @Inheritance(strategy = SINGLE_TABLE)
 public abstract class Shelf implements Iterable<Rental>, 
 					Comparable<Shelf>, EMediaCollectionListener {
-	
-	@Id
-	private int id;
-	
+
 	@Column
 	private String name;
 	
