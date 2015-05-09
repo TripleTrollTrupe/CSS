@@ -2,11 +2,16 @@ package model;
 
 import java.util.LinkedList;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Table;
+
 import model.lendables.Lendable;
 import model.lendables.Library;
 
+@Table
 public class LibraryFacade {
 	
+		@ElementCollection
 		private Library library;
 		
 		public LibraryFacade (Library library) {

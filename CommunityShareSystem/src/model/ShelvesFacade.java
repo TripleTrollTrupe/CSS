@@ -3,6 +3,8 @@ package model;
 import java.util.LinkedList;
 
 import javax.naming.OperationNotSupportedException;
+import javax.persistence.Embedded;
+import javax.persistence.Table;
 
 import model.events.EMediaCollectionListener;
 import model.events.ShelfCollectionListener;
@@ -12,8 +14,10 @@ import model.shelves.Shelf;
 import model.shelves.Shelves;
 import model.shelves.criteria.Criterion;
 
+@Table
 public class ShelvesFacade {
 	
+		@Embedded
 		private Shelves shelves;
 		private RentalFactory rentalFactory;
 		

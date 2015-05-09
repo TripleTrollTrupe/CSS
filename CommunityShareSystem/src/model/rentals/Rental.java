@@ -7,10 +7,12 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.swing.event.EventListenerList;
@@ -22,24 +24,32 @@ import model.events.EMediumListener;
 import model.lendables.Lendable;
 import adts.Pair;
 
-@Table
+@Entity
+@PrimaryKeyJoinColumn
+@NamedQuery(name=Rental.FIND_BY_ID, query="SELECT br FROM Rental br WHERE br.id = :" + 
+		Page.ID_NUMBER)
 public class Rental implements EMedium {
 	
-	@JoinTable(name="Rental info", joinColumns = {@JoinColumn ( name = "Lendable")})
-	private Lendable lendable;
+	public static final String FIND_BY_ID = "Rental.findByid";
+	public static final String ID_NUMBER = "id";
 	
-	@Temporal(value = TemporalType.TIMESTAMP)
-	private Date timestamp;
+	@Id	private int id;
 	
-	@Column
-	private boolean expired;
+	@JoinColumn private Lendable lendable;
 	
-	@OneToMany
-	@ElementCollection
-	private List<String> annotations;
+	@Column @Temporal(value = TemporalType.TIMESTAMP) private Date timestamp;
+	
+	@Column	private boolean expired;
+	
+	@OneToMany	@ElementCollection	private List<String> annotations;
 
 	protected EventListenerList listeners;
 	
+	public Rental(){
+		timestamp = new Date();
+		annotations = new LinkedList<String>();
+		listeners = new EventListenerList();
+	}
 	public Rental(Lendable lendable) {
 		this.lendable = lendable;
 		timestamp = new Date();

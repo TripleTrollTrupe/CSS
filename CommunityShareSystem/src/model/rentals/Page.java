@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.swing.event.EventListenerList;
 
@@ -14,8 +15,13 @@ import model.events.EMediaEvent;
 import model.events.EMediumListener;
 
 @Entity
+@NamedQuery(name=Page.FIND_BY_ID, query="SELECT p FROM Page p WHERE p.id = :" + 
+		Page.ID_NUMBER)
 public class Page {
 
+	public static final String FIND_BY_ID = "Page.findByid";
+	public static final String ID_NUMBER = "id";
+	
 	@Id
 	private int id;
 	

@@ -1,24 +1,24 @@
 package model.shelves;
 
-import static javax.persistence.InheritanceType.SINGLE_TABLE;
-
 import javax.naming.OperationNotSupportedException;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
-import javax.persistence.Table;
+import javax.persistence.InheritanceType;
 import javax.swing.event.EventListenerList;
 
 import model.events.EMediaCollectionListener;
 import model.rentals.Rental;
+import static javax.persistence.GenerationType.SEQUENCE;
 
-@Table
-@Inheritance(strategy = SINGLE_TABLE)
-public abstract class Shelf implements Iterable<Rental>, 
+@Entity @Inheritance(strategy = InheritanceType.SINGLE_TABLE) public abstract class Shelf implements Iterable<Rental>, 
 					Comparable<Shelf>, EMediaCollectionListener {
 
-	@Column
-	private String name;
+	@Id @GeneratedValue(strategy = SEQUENCE) private int id;
+	
+	@Column	private String name;
 	
 	protected EventListenerList listeners;
 	
@@ -28,7 +28,7 @@ public abstract class Shelf implements Iterable<Rental>,
 	}
 	
 	public Shelf() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public String getName () {

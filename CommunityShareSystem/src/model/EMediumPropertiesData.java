@@ -1,7 +1,5 @@
 package model;
 
-import static javax.persistence.EnumType.STRING;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -9,19 +7,16 @@ import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.MapKeyColumn;
 
 @Embeddable
 public class EMediumPropertiesData implements Cloneable {
 	
-	@SuppressWarnings("rawtypes")
-	@MapKeyColumn
-	private Map<EMediumAttribute,EMediumValue> attributes;
+	@SuppressWarnings("rawtypes") @MapKeyColumn	private Map<EMediumAttribute,EMediumValue> attributes;
 	
-	@Enumerated(STRING)
-	@Column(length = 35)
-	private EMediumType type;
+	@Enumerated(EnumType.STRING)	@Column(length = 35) private EMediumType type;
 	
 	
 	@SuppressWarnings("rawtypes")

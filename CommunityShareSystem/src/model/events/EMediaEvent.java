@@ -2,16 +2,29 @@ package model.events;
 
 import java.util.EventObject;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Table
 public class EMediaEvent extends EventObject {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 945504911542242329L;
 	
+	@Id
+	private int id;
+	
+	@Column
 	private int pageNum;
+	@Column
 	private boolean isBookmarked;
+	@Column
 	private int annotationNum;
+	@Column
 	private boolean hasAnnotations;
+	@Column
 	private String annotationText;
 	
 	public EMediaEvent (Object document) {

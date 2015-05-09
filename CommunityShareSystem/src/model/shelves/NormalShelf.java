@@ -1,68 +1,64 @@
 package model.shelves;
 
-import static javax.persistence.CascadeType.ALL;
-
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.List;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Entity;
 import javax.persistence.MapKeyColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 import model.events.EMediaCollectionListener;
 import model.events.RentalCollectionEvent;
 import model.rentals.Rental;
 
-@Table
+@Entity
 public class NormalShelf extends Shelf {
 	
 	// need the Map from Rental to Rental 
 	// because I want to sure I change the Rental in the
 	// Shelf and not other "equal" to it.
 	
-	@OneToMany(cascade = ALL)
-    @MapKeyColumn(name="RENTALS")
-	private Map<Rental, Rental> rentals;
-	
+	@MapKeyColumn @CollectionTable private List<Rental> rentals;
+
 	public NormalShelf(){
 		super();
-		rentals = new TreeMap<Rental,Rental> ();
+		rentals = new ArrayList<Rental> ();
 	}
 
 	public NormalShelf (String name) {
 		super(name);
-		rentals = new TreeMap<Rental, Rental> ();
+		rentals = new ArrayList<Rental> ();
 	}
 
 	public boolean addRental (Rental rental) {
-		Rental myRental = rentals.get(rental);
+		Rental myRental = rentals.get(rentals.indexOf(rental));
 		if (myRental != null)
 			myRental.renew();
 		else 
-			rentals.put (rental, rental);
+			rentals.add(rental);
 		fireRentalAdded (new RentalCollectionEvent (rental));
 		return true;
 	}
 	
 	public boolean removeRental (Rental rental) {
-		boolean result = rentals.remove(rental) != null;
+		boolean result = rentals.remove(rentals.indexOf(rental)) != null;
 		fireRentalRemoved (new RentalCollectionEvent (rental));
 		return result;
 	}
 	
 	public boolean contains (Rental rental) {
-		return rentals.containsKey(rental);
+		return rentals.contains(rental);
 	}
 	
 	//pre: contains(rental)
 	public boolean isExpired(Rental rental) {
-		return rentals.get(rental).isExpired();
+		return rentals.get(rentals.indexOf(rental)).isExpired();
 	}
 	
 	@Override
 	public Iterator<Rental> iterator() {
-		return rentals.values().iterator();
+		return rentals.iterator();
 	}
 
 	@Override

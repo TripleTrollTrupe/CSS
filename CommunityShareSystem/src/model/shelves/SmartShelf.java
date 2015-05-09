@@ -4,18 +4,19 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.naming.OperationNotSupportedException;
-import javax.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 
 import model.events.RentalCollectionEvent;
 import model.rentals.Rental;
 import model.shelves.criteria.Criterion;
 
-@Table
+@Entity
 public class SmartShelf extends Shelf {
 
 	private Criterion criteria;
 	
-	private Shelf myRentals;
+	@JoinColumn private Shelf myRentals;
 	
 	public SmartShelf(){
 		super();

@@ -1,6 +1,6 @@
 package model.rentals;
 
-import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -9,22 +9,35 @@ import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.MapKeyColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.NamedQuery;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 import model.lendables.Lendable;
 import adts.Pair;
 
-@Table
+@Entity
+@PrimaryKeyJoinColumn(name = "id", referencedColumnName = "id")
+@NamedQuery(name=Rental.FIND_BY_ID, query="SELECT br FROM Rental br WHERE br.id = :" + 
+		Page.ID_NUMBER)
 public class BookRental extends Rental {
+	
+	public static final String FIND_BY_ID = "Rental.findByid";
+	public static final String ID_NUMBER = "id";
+	
+	@Id @GeneratedValue(strategy = IDENTITY) private int id;
 
 	@Column
 	private int lastPageVisited;
 	
-	@OneToMany(cascade = ALL)
-    @MapKeyColumn(name="PAGES_KEY", table="BOOKRENTAL_PAGE")
-	private Map<Integer, Page> pages;
+	@MapKeyColumn(name="PAGES_KEY") private Map<Integer, Page> pages;
+	
+	public BookRental(){
+		super();
+	}
 	
 	public BookRental(Lendable book) {
 		super(book);

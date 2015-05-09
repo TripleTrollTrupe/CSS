@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import javax.naming.OperationNotSupportedException;
-import javax.persistence.Embedded;
+import javax.persistence.Column;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
 import javax.swing.event.EventListenerList;
@@ -22,7 +22,7 @@ public class Shelves implements Iterable<Shelf> {
 	@MapKeyColumn
 	private Map<String, Shelf> shelves;
 	
-	@Embedded
+	@Column
 	private NormalShelf myRentals;
 	
 	private EventListenerList listeners;

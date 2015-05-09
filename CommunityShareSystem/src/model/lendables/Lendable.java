@@ -1,15 +1,18 @@
 package model.lendables;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.swing.event.EventListenerList;
 
@@ -20,28 +23,23 @@ import model.EMediumType;
 import model.EMediumValue;
 import model.events.EMediumListener;
 
-import org.eclipse.persistence.annotations.Mutable;
-
 @Entity
+@NamedQuery(name=Lendable.FIND_BY_ID, query="SELECT l FROM Lendable l WHERE l.id = :" + 
+		Lendable.ID_NUMBER)
 public class Lendable implements EMedium {
+	
+	public static final String FIND_BY_ID = "Lendable.id";
+	public static final String ID_NUMBER = "id";
 
-	@Id
-	private int id;
+	@Id @GeneratedValue(strategy = IDENTITY)	private int id;
 	
-	@Column
-	private EMediumType type;
+	@Column(nullable=false)	private EMediumType type;
 	
-	@Embedded
-	@OneToOne(optional = false, cascade = CascadeType.ALL) // nao sei se é CascadeType, mas parece coincidir
-	private EMediumPropertiesData properties;
+	@Embedded @OneToOne(optional = false, cascade = CascadeType.ALL) private EMediumPropertiesData properties;
 	
-	@Column(nullable= false , unique= true) // o ficheiro é unico para o Lendable pois é o ficheiro a partilhar
 	private File file;
 	
-	@Column
-	@Basic(optional = false)
-	@Mutable
-	private int licenses;
+	@Column	private int licenses;
 	
 	private EventListenerList listeners;
 	

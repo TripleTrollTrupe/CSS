@@ -14,4 +14,9 @@ public class RentalFactory {
 		else
 			return new Rental(lendable);
 	}
+	
+	public BookRental createBookRental(){
+		return new BookRental();
+	}
+
 }

@@ -1,8 +1,6 @@
 package model;
 
-import javax.persistence.Embeddable;
 
-@Embeddable
 public enum EMediumAttribute {
 	MEDIUM_TYPE, 		// of String 
 	TITLE,				// of String 

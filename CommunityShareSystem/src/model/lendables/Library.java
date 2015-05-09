@@ -21,8 +21,7 @@ public class Library implements Iterable<Lendable> {
 	@MapKeyColumn
 	private Map<Lendable, Lendable> lendables;
 	
-	@Column(nullable = true) // ? pode ser null quando a library nao tem nenhum lendable
-	private Lendable lastAddedLendable;
+	@Column(nullable = true) private Lendable lastAddedLendable;
 		
 	public Library () {
 		lendables = new HashMap<Lendable, Lendable> ();
