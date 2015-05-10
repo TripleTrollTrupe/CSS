@@ -22,23 +22,20 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BookRentalUnitTest {
-	//TODO no idea how to test constructor, help plz, also not sure if tests are enough might need to be more intensive IDK
 	@Mock private EntityManager em;
 	@Mock private EntityManagerFactory emf;
 	@Mock private Lendable book;
 	private BookRental bookrental;
 	@Before
 	public void setUp() throws Exception {
-		//EMediumPropertiesData prop = new EMediumPropertiesData();
-		//prop.addAttribute(EMediumAttribute.PATH, (EMediumValue<?>)(Object)"lolinsertfilepathplz"); //TODO insert a proper file path
-		//prop.addAttribute(EMediumAttribute.LICENSES, (EMediumValue<?>)(Object)1);
-		//Lendable book= new Lendable(EMediumType.DOCUMENT, prop); 				 //TODO see how to initialize
-		bookrental = new BookRental(book); // dunno how to initialize this
+		
+		bookrental = new BookRental(book); 
 		given(emf.createEntityManager()).willReturn(em);
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		em.close();
 	}
 
 	@Test
@@ -75,7 +72,6 @@ public class BookRentalUnitTest {
 
 	@Test
 	public final void testHasAnnotations() {
-		//TODO multiple sceneries (multiple pages)
 		bookrental.addAnnotation(1, "test");
 		assertTrue(bookrental.hasAnnotations(1));
 	}
@@ -97,7 +93,6 @@ public class BookRentalUnitTest {
 
 	@Test
 	public final void testAddAnnotationIntString() {
-		//TODO o tamanho das anotacoes nao incrementa (?)
 		bookrental.addAnnotation(0, "test");
 		assertEquals(bookrental.getAnnotationText(0),"test");
 		bookrental.addAnnotation(1,"test2");
@@ -106,7 +101,6 @@ public class BookRentalUnitTest {
 
 	@Test
 	public final void testRemoveAnnotationIntInt() {
-		//TODO better tests
 		bookrental.addAnnotation(0, "test");
 		bookrental.addAnnotation(1, "test2");
 		bookrental.addAnnotation(2, "test3");
@@ -118,7 +112,6 @@ public class BookRentalUnitTest {
 
 	@Test
 	public final void testGetAnnotationTextIntInt() {
-		//args: pagenum, annotnum
 		bookrental.addAnnotation(0, "test");
 		bookrental.addAnnotation(0,"test2");
 		bookrental.addAnnotation(1,"test3");
@@ -148,7 +141,6 @@ public class BookRentalUnitTest {
 
 	@Test
 	public final void testToggleBookmark() {
-		//TODO multiple pages or multiple toggles
 		assertFalse(bookrental.isBookmarked(1));
 		bookrental.toggleBookmark(1);
 		assertTrue(bookrental.isBookmarked(1));
@@ -158,7 +150,6 @@ public class BookRentalUnitTest {
 
 	@Test
 	public final void testGetLastPageVisited() {
-		//TODO multiple scenarios
 		assertEquals(bookrental.getLastPageVisited(),0); //or whatever the default value is
 		bookrental.setLastPageVisited(1);
 		assertEquals(bookrental.getLastPageVisited(),1);
@@ -167,7 +158,6 @@ public class BookRentalUnitTest {
 
 	@Test
 	public final void testSetLastPageVisited() {
-		//TODO multiple scenarios
 		bookrental.setLastPageVisited(1);
 		assertEquals(bookrental.getLastPageVisited(),1);
 	}

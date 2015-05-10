@@ -26,7 +26,7 @@ import adts.Pair;
 
 @Entity
 @PrimaryKeyJoinColumn
-@NamedQuery(name=Rental.FIND_BY_ID, query="SELECT br FROM Rental br WHERE br.id = :" + 
+@NamedQuery(name=Rental.FIND_BY_ID, query="SELECT r FROM Rental r WHERE r.id = :" + 
 		Page.ID_NUMBER)
 public class Rental implements EMedium {
 	
