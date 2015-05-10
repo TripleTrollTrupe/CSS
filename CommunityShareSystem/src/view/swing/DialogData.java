@@ -2,7 +2,6 @@ package view.swing;
 
 import model.EMediumAttribute;
 import model.EMediumPropertiesData;
-import model.EMediumValue;
 
 public class DialogData {
 	public final EMediumPropertiesData data;
@@ -21,7 +20,7 @@ public class DialogData {
 	}
 
 	public void addAttribute(EMediumAttribute attribute, Object value) {
-		data.addAttribute(attribute, new EMediumValue<Object>(value));
+		data.addAttribute(attribute, value);
 	}
 	
 	public boolean didUserAccept() {

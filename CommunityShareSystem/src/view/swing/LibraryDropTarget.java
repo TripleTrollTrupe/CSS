@@ -18,9 +18,8 @@ import javax.swing.JPanel;
 import javax.swing.JTree;
 import javax.swing.SwingWorker;
 
-import delegates.BookshelfUIDelegate;
 import model.EMediumAttribute;
-import model.EMediumValue;
+import delegates.BookshelfUIDelegate;
 
 class LibraryDropTarget extends EMediumDropTarget {
 
@@ -73,12 +72,11 @@ class LibraryDropTarget extends EMediumDropTarget {
 				// asks info about files is a separate thread, so drop can conclude.
 				new SwingWorker<Void, Void> () {
 
-					@SuppressWarnings("rawtypes")
 					@Override
 					protected Void doInBackground() throws Exception {
 						for (File f : files) {
 							DialogData dialogData = new DialogData();
-							dialogData.data.addAttribute(EMediumAttribute.PATH, new EMediumValue(f.getAbsolutePath()));
+							dialogData.data.addAttribute(EMediumAttribute.PATH, f.getAbsolutePath());
 							new EMediumPropertiesUI(frame, dialogData, false);
 							if (dialogData.didUserAccept()) {
 									boolean resultAdd = uiDelegate.addEMediumLibrary(

@@ -20,7 +20,6 @@ import model.EMedium;
 import model.EMediumAttribute;
 import model.EMediumPropertiesData;
 import model.EMediumType;
-import model.EMediumValue;
 import model.events.EMediumListener;
 
 @Entity
@@ -107,7 +106,7 @@ public class Lendable implements EMedium {
 	// @pre hasLicenses()
 	public void rent() {
 		licenses--;
-		EMediumValue<?> value = new EMediumValue<Object>(licenses);
+		Object value = licenses;
 		//EMediumValueObject lin = new EMediumValueObject(licenses); not sure
 		properties.addAttribute(EMediumAttribute.LICENSES, value);
 	}

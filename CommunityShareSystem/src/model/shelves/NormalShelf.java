@@ -1,12 +1,11 @@
 package model.shelves;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
-import javax.persistence.CollectionTable;
 import javax.persistence.Entity;
-import javax.persistence.MapKeyColumn;
+import javax.persistence.JoinColumn;
 
 import model.events.EMediaCollectionListener;
 import model.events.RentalCollectionEvent;
@@ -19,46 +18,46 @@ public class NormalShelf extends Shelf {
 	// because I want to sure I change the Rental in the
 	// Shelf and not other "equal" to it.
 	
-	@MapKeyColumn @CollectionTable private List<Rental> rentals;
+	@JoinColumn private Map<Rental, Rental> rentals;
 
 	public NormalShelf(){
 		super();
-		rentals = new ArrayList<Rental> ();
+		rentals = new TreeMap<Rental, Rental> ();
 	}
 
 	public NormalShelf (String name) {
 		super(name);
-		rentals = new ArrayList<Rental> ();
+		rentals = new TreeMap<Rental, Rental> ();
 	}
 
 	public boolean addRental (Rental rental) {
-		Rental myRental = rentals.get(rentals.indexOf(rental));
+		Rental myRental = rentals.get(rental);
 		if (myRental != null)
 			myRental.renew();
 		else 
-			rentals.add(rental);
+			rentals.put (rental, rental);
 		fireRentalAdded (new RentalCollectionEvent (rental));
 		return true;
 	}
 	
 	public boolean removeRental (Rental rental) {
-		boolean result = rentals.remove(rentals.indexOf(rental)) != null;
+		boolean result = rentals.remove(rental) != null;
 		fireRentalRemoved (new RentalCollectionEvent (rental));
 		return result;
 	}
 	
 	public boolean contains (Rental rental) {
-		return rentals.contains(rental);
+		return rentals.containsKey(rental);
 	}
 	
 	//pre: contains(rental)
 	public boolean isExpired(Rental rental) {
-		return rentals.get(rentals.indexOf(rental)).isExpired();
+		return rentals.get(rental).isExpired();
 	}
 	
 	@Override
 	public Iterator<Rental> iterator() {
-		return rentals.iterator();
+		return rentals.values().iterator();
 	}
 
 	@Override

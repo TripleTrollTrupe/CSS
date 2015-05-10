@@ -14,21 +14,20 @@ import javax.persistence.MapKeyColumn;
 @Embeddable
 public class EMediumPropertiesData implements Cloneable {
 	
-	@SuppressWarnings("rawtypes") @MapKeyColumn	private Map<EMediumAttribute,EMediumValue> attributes;
+	@MapKeyColumn	private Map<EMediumAttribute, Object> attributes;
 	
 	@Enumerated(EnumType.STRING)	@Column(length = 35) private EMediumType type;
 	
 	
-	@SuppressWarnings("rawtypes")
 	public EMediumPropertiesData() {
-		attributes = new HashMap<EMediumAttribute,EMediumValue>();
+		attributes = new HashMap<EMediumAttribute,Object>();
 	}
 
 	public Object getAttribute(EMediumAttribute attribute) {
 		return attributes.get(attribute);
 	}
 
-	public void addAttribute(EMediumAttribute attribute, EMediumValue<?> value) {
+	public void addAttribute(EMediumAttribute attribute, Object value) {
 		attributes.put(attribute, value);
 	}
 	
@@ -36,16 +35,16 @@ public class EMediumPropertiesData implements Cloneable {
 		return this.type == type; 
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings("unchecked")
 	@Override
 	public EMediumPropertiesData clone() {
 		EMediumPropertiesData newData = null;
 		try {
 			newData = (EMediumPropertiesData) super.clone();
-			newData.attributes = new HashMap<EMediumAttribute, EMediumValue>(attributes);
+			newData.attributes = new HashMap<EMediumAttribute, Object>(attributes);
 			if (attributes.containsKey(EMediumAttribute.TAGS)) {
 				
-				EMediumValue<?> cloned = new EMediumValue<Object>(new LinkedList<String>((Collection<? extends String>)attributes.get(EMediumAttribute.TAGS).getValue()));
+				Object cloned = new LinkedList<String>((Collection<? extends String>)attributes.get(EMediumAttribute.TAGS));
 				newData.attributes.put(EMediumAttribute.TAGS, cloned);
 				
 			}

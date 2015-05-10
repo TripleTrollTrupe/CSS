@@ -6,6 +6,7 @@ import static org.mockito.BDDMockito.given;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,6 +20,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import adts.Pair;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BookRentalUnitTest {
@@ -66,8 +69,13 @@ public class BookRentalUnitTest {
 		bookrental.addAnnotation(1,strings.get(0));
 		bookrental.addAnnotation(1, strings.get(1));
 		bookrental.addAnnotation(2,strings.get(2));
-		assertEquals(bookrental.getAnnotatins().toString(),strings);
-		
+		Iterator<String> itS = strings.iterator();
+		Iterator<Pair<Integer, List<String>>> it = bookrental.getAnnotatins().iterator();
+		while(it.hasNext()){
+			Iterator<String> itL = it.next().getSecond().iterator();
+			while(itL.hasNext())
+				assertEquals(itL.next(),itS.next());
+		}		
 	}
 
 	@Test
@@ -94,9 +102,11 @@ public class BookRentalUnitTest {
 	@Test
 	public final void testAddAnnotationIntString() {
 		bookrental.addAnnotation(0, "test");
+		assertTrue(bookrental.hasAnnotations(0));
 		assertEquals(bookrental.getAnnotationText(0),"test");
 		bookrental.addAnnotation(1,"test2");
-		assertEquals(bookrental.getAnnotationText(2),"test2");
+		assertTrue(bookrental.hasAnnotations(1));
+		assertEquals(bookrental.getAnnotationText(1),"test2");
 	}
 
 	@Test
