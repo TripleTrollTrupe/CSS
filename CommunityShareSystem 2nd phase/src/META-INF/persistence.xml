@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="CommunityShareSystem" transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>model.shelves.Shelf</class>
+		<class>model.shelves.NormalShelf</class>
+		<class>model.rentals.Rental</class>
+		<class>model.rentals.BookRental</class>
+		<class>model.rentals.Page</class>
+		<class>model.lendables.Lendable</class>
+		<class>persistence.utils.EMediumPropertiesConverter</class>
+		<class>model.shelves.SmartShelf</class>
+		<class>model.shelves.criteria.Criterion</class>
+		<class>model.shelves.criteria.AndCriteria</class>
+		<class>model.shelves.criteria.AuthorCriteria</class>
+		<class>model.shelves.criteria.CompoundCriteria</class>
+		<class>model.shelves.criteria.NotCriteria</class>
+		<class>model.shelves.criteria.OrCriteria</class>
+		<class>model.shelves.criteria.RecentlyBorrowedCriteria</class>
+		<properties>
+			<property name="eclipselink.target-server" value="None"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/css-projeto1"/>
+			<property name="javax.persistence.jdbc.user" value="root"/>
+			<property name="javax.persistence.jdbc.password" value=""/>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+		</properties>
+	</persistence-unit>
+</persistence>
