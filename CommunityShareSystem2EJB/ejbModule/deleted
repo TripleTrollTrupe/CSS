@@ -1,0 +1,20 @@
+deleted packages
+ats
+controller.swing
+delegates
+services.viewer
+view
+view.swing
+
+files deleted
+
+ShelfCollectionListener from model.events
+EMediumListener from model.events
+CSSEMediumMetadataUIDelegate from css
+CSSEmediaUIDelegate from css
+CSS - the other one whatever it's name was from css
+StartUp from css
+
+lines in files commented
+
+removed overrides from CSSBookshelfUIDelegate
