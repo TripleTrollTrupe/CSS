@@ -2,13 +2,13 @@ package ui;
 
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/GetShelvesHandler/")
-public class UIGetShelvesHandler extends UIUseCaseHandler {
+@WebServlet("/GetEMediumHandler/")
+public class UIGetEMediumHandler extends UIUseCaseHandler {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1116825013690653858L;
+	private static final long serialVersionUID = 9028837011137832927L;
 
 	@Override
 	protected void fillActions() {
