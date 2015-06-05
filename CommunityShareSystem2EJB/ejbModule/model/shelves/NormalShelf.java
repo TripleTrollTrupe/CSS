@@ -29,7 +29,7 @@ class NormalShelf extends Shelf {
 
 	@Override
 	public void addRental(Rental rental) {
-		Lendable lendable = rental.getLendable();
+		Lendable lendable = (Lendable) rental.getLendable();
 		Rental myRental = getMyRental(lendable);
 		if (myRental != null)
 			myRental.renew();
@@ -39,13 +39,13 @@ class NormalShelf extends Shelf {
 	
 	@Override
 	public boolean removeRental (Rental rental) {
-		Rental myRental = getMyRental(rental.getLendable());
+		Rental myRental = getMyRental((Lendable) rental.getLendable());
 		return myRental != null ? rentals.remove(myRental) : false;
 	}
 
 	@Override
 	public boolean returnRental(Rental rental) {
-		return returnRentalForLendable(rental.getLendable());
+		return returnRentalForLendable((Lendable) rental.getLendable());
 	}
 	
 	@Override

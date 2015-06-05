@@ -155,7 +155,7 @@ public class Shelves {
 //			@Override
 //			public Boolean execute(EntityManager em) throws Exception {
 				Shelf shelf = getShelf(em, MYRENTALS);
-				return shelf.hasNonExpiredRental(eMedium.getLendable());
+				return shelf.hasNonExpiredRental((Lendable) eMedium.getLendable());
 //			}
 //		});
     }

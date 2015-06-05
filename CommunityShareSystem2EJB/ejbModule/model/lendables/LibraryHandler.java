@@ -12,6 +12,6 @@ public class LibraryHandler implements LibraryHandlerRemote, LibraryHandlerLocal
 //	public void adicionarLendable(String MEDIUM_TYPE,String TITLE,String PATH,String LANGUAGE,String AUTHOR,
 //			String MIME_TYPE, List TAGS,String ALBUM,int WIDTH,int HEIGHT,int LICENSES){
 //		
-//	}
+//	} 
 	
 }

@@ -2,7 +2,6 @@ package model;
 
 import java.io.File;
 
-import model.lendables.Lendable;
 import model.rentals.Rental;
 
 public interface EMedium {
@@ -17,6 +16,6 @@ public interface EMedium {
 	boolean canAnnotatePage();
 	EMediumProperties getEMediumProperties();
 	boolean isExpired();
-	Lendable getLendable();
+	EMedium getLendable();
 	Rental makeRental();
 }

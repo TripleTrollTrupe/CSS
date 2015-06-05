@@ -168,7 +168,7 @@ public class Lendable implements EMedium {
 	}
 
 	@Override
-	public Lendable getLendable() {
+	public EMedium getLendable() {
 		return this;
 	}
 

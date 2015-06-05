@@ -83,7 +83,7 @@ public class Rental implements EMedium {
 		annotations.remove(annotNum);
 	}
 
-	public Iterable<String> getAnnotations() {
+	public List<String> getAnnotations() {
 		return annotations;
 	}
 
@@ -160,7 +160,7 @@ public class Rental implements EMedium {
 	}
 
 	@Override
-	public Lendable getLendable() {
+	public EMedium getLendable() {
 		return lendable;
 	}
 
