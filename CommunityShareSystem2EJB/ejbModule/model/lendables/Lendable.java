@@ -28,10 +28,14 @@ import persistence.utils.EMediumPropertiesConverter;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = Lendable.FIND_ALL, query = "SELECT l FROM Lendable l"),
+	@NamedQuery(name = Lendable.FIND_BY_ID, query = "SELECT l FROM Lendable l WHERE l.id = :" + Lendable.ID)
 })
-public class Lendable implements EMedium {
-
+public class Lendable extends EMedium {
+	private static final long serialVersionUID = -4976963854617545699L;
+	
 	public static final String FIND_ALL = "findAll";
+	public static final String FIND_BY_ID = "findByID";
+	public static final String ID = "ID";
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -77,13 +81,7 @@ public class Lendable implements EMedium {
 	public List<String> getTags() {
 		return new LinkedList<String> (properties.getAttribute(EMediumAttribute.TAGS));
 	}
-/*	
-	public void addEMediumListener(EMediumListener listener) {
-    }
-	
-	public void removeEMediumListener(EMediumListener listener) {
-    }
-*/
+
 	@Override
 	public boolean canBookmarkPage() {
 		return false;
@@ -170,6 +168,11 @@ public class Lendable implements EMedium {
 	@Override
 	public EMedium getLendable() {
 		return this;
+	}
+
+	@Override
+	public int getID() {
+		return id;
 	}
 
 }

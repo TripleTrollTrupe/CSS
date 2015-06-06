@@ -5,8 +5,6 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -28,9 +26,8 @@ import model.lendables.Lendable;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@LocalBean
-@Stateless
-public class Rental implements EMedium {
+public class Rental extends EMedium {
+	private static final long serialVersionUID = -1704573469652777871L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -160,7 +157,7 @@ public class Rental implements EMedium {
 	}
 
 	@Override
-	public EMedium getLendable() {
+	public Lendable getLendable() {
 		return lendable;
 	}
 
@@ -196,6 +193,11 @@ public class Rental implements EMedium {
 		} else if (!lendable.equals(other.lendable))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int getID() {
+		return id;
 	}
 
 }

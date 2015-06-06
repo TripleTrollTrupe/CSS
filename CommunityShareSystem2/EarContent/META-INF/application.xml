@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/application_7.xsd" version="7">
+  <display-name>CommunityShareSystem2</display-name>
+  <module>
+    <web>
+      <web-uri>CommunityShareSystem2Web.war</web-uri>
+      <context-root>CommunityShareSystem2Web</context-root>
+    </web>
+  </module>
+  <module>
+    <ejb>CommunityShareSystem2EJB.jar</ejb>
+  </module>
+  <module>
+    <java>CommunityShareSystem2Client.jar</java>
+  </module>
+</application>

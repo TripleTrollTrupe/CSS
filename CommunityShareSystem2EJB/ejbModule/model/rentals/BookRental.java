@@ -5,17 +5,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 
 import model.lendables.Lendable;
 
-@Stateless
-@LocalBean
+@Entity
 public class BookRental extends Rental {
+	private static final long serialVersionUID = 6564366001684365518L;
 
 	private int lastPageVisited;
 	

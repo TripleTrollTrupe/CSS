@@ -3,7 +3,7 @@ package model.shelves.criteria;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-import model.rentals.Rental;
+import model.EMedium;
 
 @Entity
 public final class AuthorCriteria extends Criterion {
@@ -18,7 +18,7 @@ public final class AuthorCriteria extends Criterion {
 	}
 	
 	@Override
-	public boolean satisfies(Rental rental) {
+	public boolean satisfies(EMedium rental) {
 		return rental.getAuthor().equals(author) ;
 	}
 

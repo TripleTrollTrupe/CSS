@@ -2,7 +2,7 @@ package model.shelves.criteria;
 
 import javax.persistence.Entity;
 
-import model.rentals.Rental;
+import model.EMedium;
 
 @Entity
 public final class AndCriteria extends CompoundCriteria {
@@ -14,7 +14,7 @@ public final class AndCriteria extends CompoundCriteria {
 	}
 
 	@Override
-	public boolean satisfies(Rental document) {
+	public boolean satisfies(EMedium document) {
 		return leftCriteria.satisfies(document) && 
 			   rightCriteria.satisfies(document);
 	}

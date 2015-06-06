@@ -1,14 +1,70 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charser=UTF-8">
-		<title> Community Share System </title>
-	</head>
-	<body>
-	  <h2> Community Share System </h2>
-	  <ul>
-	  	<li><a href=""> Operation1 </a> </li>
-	  	<li><a href=""> Operation2 </a> </li>
-	  </ul>
-	</body>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link type="text/css" rel="stylesheet" href="css.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CommunityShareSystem</title>
+</head>
+
+<body>
+	<h2 class="logo">Community Share System <small>v1.5</small></h2>
+
+	<form action="listarShelves" method="get">
+		<button class="btn btn-primary customsml" type="submit">Listar Shelves</button>
+	</form>
+	
+	<form action="listarBiblioteca" method="get">
+		<button class="btn btn-primary customsml" type="submit">Listar Library</button>
+	</form>
+	
+	<form action="listarMyRentals" method="get">
+		<button class="btn btn-primary customsml" type="submit">Listar MyRentals</button>
+	</form>
+
+	<form class="form-inline" action="adicionarNormalShelf" method="get">
+	<div class="form-group">
+		<input type="text" class="form-control" name="shelfName" placeholder="Nome da Shelf"/>
+		<button class="btn btn-primary customsml" type="submit">Criar NormalShelf</button>
+		</div>	
+	</form>
+
+	<form class ="form-inline"action="removerNormalShelf" method="get">
+	<div class="form-group">
+		<input type="text" class="form-control" name="shelfName" placeholder="Nome da Shelf"/>
+		<button class="btn btn-primary customsml" type="submit">Remover Shelf</button>
+		</div>
+	</form>
+
+	<form action="listarDocumentosShelves" method="get">
+		<button class="btn btn-primary customlg" type="submit">Listar Documentos de todas as Shelves</button>
+	</form>
+
+	<form class="form-inline" action="alugarDocumento" method="get">
+	<div class="form-group">
+		<input type="text" class="form-control" name="emediumID" placeholder="ID do Lendable"/>
+		<button class="btn btn-primary customsml" type="submit">Alugar Documento</button>
+		</div>
+	</form>
+
+	<form class="form-inline" action="adicionarDocumentoShelf" method="get">
+	<div class="form-group">
+		<input type="text" class="form-control" name="shelfName" placeholder="Nome da Shelf"/> 
+		<input type="text" class="form-control" name="emediumID" placeholder="ID do Lendable"/>
+		<button class="btn btn-primary custommed" type="submit">Adicionar Documento a uma Shelf</button>
+		</div>
+	</form>
+
+	<form class="form-inline" action="removerDocumentoShelf" method="get">
+	<div class="form-group">
+		<input type="text" class="form-control" name="shelfName" placeholder="Nome da Shelf"/> 
+		<input type="text" class="form-control" name="emediumID" placeholder="ID do Lendable"/>
+		<button class="btn btn-primary custommed" type="submit">Remover Documento de uma Shelf</button>
+		</div>
+	</form>
+
+</body>
 </html>

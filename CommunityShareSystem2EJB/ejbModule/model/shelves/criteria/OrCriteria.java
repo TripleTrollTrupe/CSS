@@ -2,7 +2,7 @@ package model.shelves.criteria;
 
 import javax.persistence.Entity;
 
-import model.rentals.Rental;
+import model.EMedium;
 
 @Entity
 public final class OrCriteria extends CompoundCriteria {
@@ -14,7 +14,7 @@ public final class OrCriteria extends CompoundCriteria {
 	}
 
 	@Override
-	public boolean satisfies(Rental rental) {
+	public boolean satisfies(EMedium rental) {
 		return leftCriteria.satisfies(rental) || 
 		   rightCriteria.satisfies(rental);
 	}

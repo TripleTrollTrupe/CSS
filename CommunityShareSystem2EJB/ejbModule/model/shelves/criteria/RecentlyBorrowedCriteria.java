@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+import model.EMedium;
 import model.rentals.Rental;
 
 @Entity
@@ -20,7 +21,7 @@ public final class RecentlyBorrowedCriteria extends Criterion {
 	}
 	
 	@Override
-	public boolean satisfies(Rental rental) {
-		return rental.getRentalTimestamp().getTime() + elapsedTime > new Date().getTime() ;
+	public boolean satisfies(EMedium rental) {
+		return ((Rental) rental).getRentalTimestamp().getTime() + elapsedTime > new Date().getTime() ;
 	}
 }

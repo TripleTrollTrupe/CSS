@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import model.rentals.Rental;
+import model.EMedium;
 
 @Entity
 public final class NotCriteria extends Criterion {
@@ -19,7 +19,7 @@ public final class NotCriteria extends Criterion {
 	}
 
 	@Override
-	public boolean satisfies(Rental rental) {
+	public boolean satisfies(EMedium rental) {
 		return !criteria.satisfies(rental);
 	}
 
