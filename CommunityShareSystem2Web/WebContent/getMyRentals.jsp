@@ -20,13 +20,17 @@
 
 <c:if test="${helper.hasEMediums}">
 	<p>MyRentals</p>
-	<table>
+	<div class="container">
+	<table class="table-bordered">
+	<thead>
 	<tr>
-	<td align="center"> Rental ID </td>
-	<td align="center"> Lendable ID </td>
-	<td align="center"> Titulo </td>
-	<td align="center"> Tipo </td>
+	<th align="center"> Rental ID </th>
+	<th align="center"> Lendable ID </th>
+	<th align="center"> Titulo </th>
+	<th align="center"> Tipo </th>
 	</tr>
+	</thead>
+	<tbody>
 	<c:forEach var="x" items="${helper.EMediums}">
 		<tr>
 		<td>${x.ID}</td>
@@ -35,7 +39,9 @@
 		<td>${x.type}</td>
 		</tr>
 	</c:forEach>
+	</tbody>
 	</table>
+	</div>
 </c:if>
 
 </body>

@@ -15,7 +15,7 @@
 	<%
 		String mensagem = (String)request.getAttribute("mensagem");
 		if(mensagem != null)
-			out.print("<ul><li>" + mensagem + "</li></lu>");
+			out.print("<span class='label label-default'>"+mensagem+"</span>");
 		
 		List<String> shelves = (List<String>)request.getAttribute("resultado");
 		out.print("<div class="+"'panel panel-default'>");

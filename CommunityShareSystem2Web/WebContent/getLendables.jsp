@@ -14,27 +14,33 @@
 </head>
 <body>
 
-<ul><li>${helper.message}</li></ul>
-
+	<span class="label label-default">
+		${helper.message}
+	</span>
 <c:if test="${helper.hasEMediums}">
 	<div class="panel panel-default">
 	<div class="panel panel-heading"> Biblioteca </div>
-	<div class="panel panel-body"> 
-	<table>
+	<div class="panel panel-body">
+	<div class="container">
+	<table class="table-bordered">
+	<thead>
 		<tr>
-			<td align="center"> Lendable ID </td>
-			<td align="center"> Titulo </td>
-			<td align="center"> Tipo </td>
+			<th align="center"> Lendable ID </th>
+			<th align="center"> Titulo </th>
+			<th align="center"> Tipo </th>
 		</tr>
-	
+	</thead>
 	<c:forEach var="x" items="${helper.EMediums}">
+	<tbody>
 		<tr>
 		<td>${x.ID}</td>
 		<td>${x.title}</td>
 		<td>${x.type}</td>
 		</tr>
 	</c:forEach>
+	</tbody>
 	</table>
+	</div>
 	</div>
 	</div>
 </c:if>

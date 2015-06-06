@@ -18,7 +18,7 @@
 	<% 
 	String mensagem = (String)request.getAttribute("mensagem");
 	if(mensagem != null)
-		out.print("<ul><li>" + mensagem + "</li></ul>");
+		out.print("<span class='label label-default'>"+mensagem+"</span>");
 	
 	Map<String,List<EMedium>> shelvesRentals = (Map<String,List<EMedium>>)request.getAttribute("mapa");
 	out.print("<p>Documents per Shelf</p>");
@@ -26,8 +26,7 @@
 	if(shelvesRentals.isEmpty())
 		out.print("<ul><li>There are no shelves to be listed.</li></ul>");
 	else {
-		out.print("<div class='panel panel-default'>");
-		out.print("<div class='panel-heading'>Documents per Shelf</div>");
+
 		for(Map.Entry<String,List<EMedium>> entry : shelvesRentals.entrySet()) {
 			
 			String key = entry.getKey();
@@ -36,16 +35,17 @@
 			List<EMedium> value = entry.getValue();
 			
 			if(!value.isEmpty()) {
-			
-				out.print("<table>");
+				out.print("<table class='table-bordered'>");
+				out.print("<thead>");
 				out.print("<tr>");
-				out.print("<td align=\"center\"> Rental ID </td>");
-				out.print("<td align=\"center\"> Lendable ID </td>");
-				out.print("<td align=\"center\"> Titulo </td>");
-				out.print("<td align=\"center\"> Tipo </td>");
+				out.print("<th align=\"center\"> Rental ID </th>");
+				out.print("<th align=\"center\"> Lendable ID </th>");
+				out.print("<th align=\"center\"> Titulo </th>");
+				out.print("<th align=\"center\"> Tipo </th>");
 				out.print("</tr>");
+				out.print("</thead>");
 			}
-			
+			out.print("<tbody>");
 			for(EMedium rental : value) {
 				out.print("<tr>");
 				out.print("<td> " + rental.getID() + "</td>");
@@ -54,8 +54,8 @@
 				out.print("<td> " + rental.getType() + "</td>");
 				out.print("</tr>");
 			}
-			out.print("</table>");
-			out.print("</div>");
+			out.print("</tbody>");
+			out.print("</table>");	
 		}
 	}
 	%>
